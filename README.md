@@ -40,7 +40,7 @@ DosageTranslationCombined combined = DosisTilTekstWrapper.convertCombined(dosage
 
 Eksempel på anvendelse:
 ```java
-import dk.medicinkortet.fmkdosistiltekstwrapper.DosisTilTekstWrapper.FMKVersion;
+import dk.medicinkortet.fmkdosistiltekstwrapper.FMKVersion;
 ...
 SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
