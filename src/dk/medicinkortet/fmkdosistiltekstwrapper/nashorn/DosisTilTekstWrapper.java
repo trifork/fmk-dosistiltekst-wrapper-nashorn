@@ -71,7 +71,7 @@ public class DosisTilTekstWrapper {
 	
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-	public static DosageProposalResult getDosageProposalResult(String type, String iteration, String mapping, String unitTextSingular, String unitTextPlural, String supplementaryText, List<Date> beginDates, List<Date> endDates, FMKVersion version, int dosageProposalVersion) {
+	public static DosageProposalResult getDosageProposalResult(String type, String iteration, String mapping, String unitTextSingular, String unitTextPlural, String supplementaryText, List<Date> beginDates, List<Date> endDates, FMKVersion version, int dosageProposalVersion, Integer shortTextMaxLength) {
 		if(engine == null) {
 			throw new RuntimeException("DosisTilTekstWrapper not initialized - call initialize() method before invoking any of the methods");
 		}
@@ -83,16 +83,20 @@ public class DosisTilTekstWrapper {
 			JSObject beginDateArray = (JSObject)arrayConstructor.newObject(null);
 			JSObject endDateArray = (JSObject)arrayConstructor.newObject(null);
 			
-			 JSObject dateConstructor = (JSObject) engine.eval("Date");
-			 for(int i = 0; i < beginDates.size(); i++) {
-				 Object beginDateJS = dateConstructor.newObject(new Double(beginDates.get(i).getTime()));
-				 ((Invocable)engine).invokeMethod(beginDateArray, "push", beginDateJS);
-				 Object endDateJS = dateConstructor.newObject(new Double(endDates.get(i).getTime()));
-				 ((Invocable)engine).invokeMethod(endDateArray, "push", endDateJS);
-				 	 
+			JSObject dateConstructor = (JSObject) engine.eval("Date");
+			for(int i = 0; i < beginDates.size(); i++) {
+				Object beginDateJS = dateConstructor.newObject(new Double(beginDates.get(i).getTime()));
+				((Invocable)engine).invokeMethod(beginDateArray, "push", beginDateJS);
+				Object endDateJS = dateConstructor.newObject(new Double(endDates.get(i).getTime()));
+				((Invocable)engine).invokeMethod(endDateArray, "push", endDateJS);
 			 }
 			    
-			res = (ScriptObjectMirror) invocable.invokeMethod(dosageProposalXMLGeneratorObj, "generateXMLSnippet", type, iteration, mapping, unitTextSingular, unitTextPlural, supplementaryText, beginDateArray, endDateArray, version.toString(), dosageProposalVersion);
+			 if(shortTextMaxLength != null) {
+				 res = (ScriptObjectMirror) invocable.invokeMethod(dosageProposalXMLGeneratorObj, "generateXMLSnippet", type, iteration, mapping, unitTextSingular, unitTextPlural, supplementaryText, beginDateArray, endDateArray, version.toString(), dosageProposalVersion, shortTextMaxLength.intValue());
+			 }
+			 else {
+				 res = (ScriptObjectMirror) invocable.invokeMethod(dosageProposalXMLGeneratorObj, "generateXMLSnippet", type, iteration, mapping, unitTextSingular, unitTextPlural, supplementaryText, beginDateArray, endDateArray, version.toString(), dosageProposalVersion);
+			 }
 		} catch (ScriptException e) {
 			e.printStackTrace();
 			throw new RuntimeException("ScriptException in DosisTilTekstWrapper.getDosageProposalResult()", e);
@@ -110,6 +114,10 @@ public class DosisTilTekstWrapper {
 		String xml = (String)res.callMember("getXml");
 		
 		return new DosageProposalResult(xml, shortText, longText);
+	}	
+
+	public static DosageProposalResult getDosageProposalResult(String type, String iteration, String mapping, String unitTextSingular, String unitTextPlural, String supplementaryText, List<Date> beginDates, List<Date> endDates, FMKVersion version, int dosageProposalVersion) {
+		return getDosageProposalResult(type, iteration, mapping, unitTextSingular, unitTextPlural, supplementaryText, beginDates, endDates, version, dosageProposalVersion, null);
 	}
 	
 	public static DosageTranslationCombined convertCombined(DosageWrapper dosage) {
