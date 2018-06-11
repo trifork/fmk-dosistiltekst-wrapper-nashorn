@@ -87,7 +87,7 @@ public class DosisTilTekstWrapper {
 			for(int i = 0; i < beginDates.size(); i++) {
 				Object beginDateJS = dateConstructor.newObject(new Double(beginDates.get(i).getTime()));
 				((Invocable)engine).invokeMethod(beginDateArray, "push", beginDateJS);
-				Object endDateJS = dateConstructor.newObject(new Double(endDates.get(i).getTime()));
+				Object endDateJS = endDates.get(i) != null ? dateConstructor.newObject(new Double(endDates.get(i).getTime())) : null;
 				((Invocable)engine).invokeMethod(endDateArray, "push", endDateJS);
 			 }
 			    

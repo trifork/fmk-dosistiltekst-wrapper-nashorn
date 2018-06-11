@@ -71,5 +71,20 @@ DosageProposalResult res = DosisTilTekstWrapper.getDosageProposalResult("{M+M+A+
 				FMKVersion.FMK146, 1, 1000);
 ```		
 
+Eksempel på anvendelse uden doseringsslutdato:
+```java
+import dk.medicinkortet.fmkdosistiltekstwrapper.FMKVersion;
+...
+SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+ArrayList<Date> endDates = new ArrayList<>();
+endDates.add(null);
+DosageProposalResult res = DosisTilTekstWrapper.getDosageProposalResult("PN", "1", "1", "tablet", "tabletter", ", tages med rigeligt vand", Arrays.asList(SIMPLE_DATE_FORMAT.parse("2017-05-17")), endDates, FMKVersion.FMK146, 1);
+
+String xml = res.getXmlSnippet();
+String longText = res.getLongText();
+String shortText = res.getShortText();
+```
+
+
 ## Kun til udviklere af selve fmk-dosistiltekst-wrapper komponenten:
 Forudsætter fmk-dosis-til-tekst-ts er checket ud og bygget "parallelt" med dette projekt, således at ../fmk-dosis-til-tekst-ts/target/dosistiltekst.js er tilgængelig.
