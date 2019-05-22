@@ -118,10 +118,6 @@ public class WeeklyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				"   Søndag: 1 stk.\n   Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
-				"WeeklyRepeatedConverterImpl", 
-				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
-		Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
-		Assert.assertEquals(
 				4/7., 
 				DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().doubleValue(), 
 				0.000000001); 							
