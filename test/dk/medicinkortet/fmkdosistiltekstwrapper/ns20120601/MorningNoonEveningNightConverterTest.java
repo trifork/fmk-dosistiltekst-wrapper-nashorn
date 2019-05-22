@@ -164,9 +164,7 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 		Assert.assertEquals(
 			"MorningNoonEveningNightConverterImpl", 
 			DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
-		Assert.assertEquals(
-			"1 mg morgen efter behov og 2 mg aften efter behov.\n   Bemærk: ved måltid", 
-			DosisTilTekstWrapper.convertShortText(dosage));
+		Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue()); 			
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));		
 	}
