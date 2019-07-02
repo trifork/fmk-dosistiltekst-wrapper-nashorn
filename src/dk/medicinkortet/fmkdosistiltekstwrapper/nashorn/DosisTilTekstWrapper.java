@@ -236,6 +236,28 @@ public class DosisTilTekstWrapper {
 		return (String)res;
 	}
 	
+	public static String getShortTextConverterClassName(DosageWrapper dosage, int maxLength) {
+		
+		if(engine == null) {
+			throw new RuntimeException("DosisTilTekstWrapper not initialized - call initialize() method before invoking any of the methods");
+		}
+		
+		String json = "(unset)";
+		Object res;
+		try {
+			json = JSONHelper.toJsonString(dosage);
+			res = engine.eval("dosistiltekst.Factory.getShortTextConverter().getConverterClassName(" + json + "," + maxLength + ")");
+		} catch (ScriptException e) {
+			e.printStackTrace();
+			throw new RuntimeException("ScriptException in getShortTextConverterClassName()", e);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			throw new RuntimeException("JsonProcessingException in DosisTilTekstWrapper.getShortTextConverterClassName() with json " + json, e);
+		}
+		
+		return (String)res;
+	}
+	
 	public static String getShortTextConverterClassName(DosageWrapper dosage) {
 		
 		if(engine == null) {
@@ -278,6 +300,28 @@ public class DosisTilTekstWrapper {
 		
 		return (String)res;
 	}
+	
+	public static String getLongTextConverterClassName(DosageWrapper dosage, int maxLength) {
+		if(engine == null) {
+			throw new RuntimeException("DosisTilTekstWrapper not initialized - call initialize() method before invoking any of the methods");
+		}
+		
+		String json = "(unset)";
+		Object res;
+		try {
+			json = JSONHelper.toJsonString(dosage);
+			res = engine.eval("dosistiltekst.Factory.getLongTextConverter().getConverterClassName(" + json + "," + maxLength + ")");
+		} catch (ScriptException e) {
+			e.printStackTrace();
+			throw new RuntimeException("ScriptException in getLongTextConverterClassName()", e);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			throw new RuntimeException("JsonProcessingException in DosisTilTekstWrapper.getLongTextConverterClassName() with json " + json, e);
+		}
+		
+		return (String)res;
+	}
+	
 		
 	public static DosageType getDosageType(DosageWrapper dosage) {
 				

@@ -83,7 +83,7 @@ public class MorningNoonEveningNightInNDaysConverterTest extends DosisTilTekstWr
 				"MorningNoonEveningNightInNDaysConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"1 tablet morgen.\n   Bemærk: ved måltid i 5 dage", 
+				"1 tablet morgen i 5 dage (gentages ikke).\n   Bemærk: ved måltid", 
 				DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 				1.0, 
@@ -126,12 +126,22 @@ public class MorningNoonEveningNightInNDaysConverterTest extends DosisTilTekstWr
 				"   Tirsdag den 4. januar 2011: 1 tablet morgen efter behov højst 1 gang\n"+
 				"   Onsdag den 5. januar 2011: 1 tablet morgen efter behov højst 1 gang.\n   Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
+
+		Assert.assertEquals(
+				"MorningNoonEveningNightInNDaysConverterImpl", 
+				DosisTilTekstWrapper.getShortTextConverterClassName(dosage, 200));
+		Assert.assertEquals(
+				"1 tablet morgen efter behov i 5 dage (gentages ikke).\n   Bemærk: ved måltid", 
+				DosisTilTekstWrapper.convertShortText(dosage, 200));
+		
 		Assert.assertEquals(
 				"MorningNoonEveningNightInNDaysConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"1 tablet morgen efter behov.\n   Bemærk: ved måltid i 5 dage", 
+				"1 tablet morgen efter behov i 5 dage.\n   Bemærk: ved måltid", 
 				DosisTilTekstWrapper.convertShortText(dosage));
+
+		
 		Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue());
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));						
 	}
