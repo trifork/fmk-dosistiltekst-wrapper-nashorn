@@ -62,7 +62,7 @@ public class CombinedTwoPeriodesConverterTest extends DosisTilTekstWrapperTestBa
 					"CombinedTwoPeriodesConverterImpl", 
 					DosisTilTekstWrapper.getShortTextConverterClassName(dosage, 100));
 			Assert.assertEquals(
-					"første dag 1 dråbe 4 gange (gentages ikke), herefter 1 dråbe 2 gange daglig", 
+					"Første dag 1 dråbe 4 gange (gentages ikke), herefter 1 dråbe 2 gange daglig", 
 					DosisTilTekstWrapper.convertShortText(dosage, 100));
 			Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue());
 			Assert.assertEquals(DosageType.Combined, DosisTilTekstWrapper.getDosageType(dosage));
@@ -111,7 +111,7 @@ public class CombinedTwoPeriodesConverterTest extends DosisTilTekstWrapperTestBa
 					DosisTilTekstWrapper.getShortTextConverterClassName(dosage, 100));
 			String convertShortText = DosisTilTekstWrapper.convertShortText(dosage, 100);
 			Assert.assertEquals(
-					"første dag 1 dråbe 4 gange (gentages ikke), herefter 1 dråbe 2 gange daglig", 
+					"Første dag 1 dråbe 4 gange (gentages ikke), herefter 1 dråbe 2 gange daglig", 
 					convertShortText);
 			Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue());
 			Assert.assertEquals(DosageType.Combined, DosisTilTekstWrapper.getDosageType(dosage));
