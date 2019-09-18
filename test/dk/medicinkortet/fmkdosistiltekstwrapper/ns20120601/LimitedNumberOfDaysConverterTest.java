@@ -81,7 +81,7 @@ public class LimitedNumberOfDaysConverterTest extends DosisTilTekstWrapperTestBa
 				"LimitedNumberOfDaysConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage, 200));
 		Assert.assertEquals(
-				"4 måleskefulde 2 gange daglig i 4 dage.\n   Bemærk: ved måltid", 
+				"4 måleskefulde 2 gange daglig i 4 dage.\nBemærk: ved måltid", 
 				DosisTilTekstWrapper.convertShortText(dosage, 200));
 
 		Assert.assertEquals(

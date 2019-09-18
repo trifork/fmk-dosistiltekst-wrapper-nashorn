@@ -162,7 +162,8 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 		Assert.assertEquals(
 			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
 			"   Doseringsforløb:\n"+
-			"   1 mg morgen efter behov + 2 mg aften efter behov.\nBemærk: ved måltid",
+			"   1 mg morgen efter behov + 2 mg aften efter behov.\n"+
+			"   Bemærk: ved måltid",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue()); 			
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));		

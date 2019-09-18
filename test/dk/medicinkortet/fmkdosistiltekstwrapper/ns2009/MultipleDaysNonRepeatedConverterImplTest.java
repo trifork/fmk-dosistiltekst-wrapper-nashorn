@@ -36,7 +36,7 @@ public class MultipleDaysNonRepeatedConverterImplTest  extends DosisTilTekstWrap
 				"MultipleDaysNonRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"1 tablet morgen dag 1 og 3.\n   Bemærk: ved måltid", 
+				"1 tablet morgen dag 1 og 3.\nBemærk: ved måltid", 
 				DosisTilTekstWrapper.convertShortText(dosage));
 		
 		Assert.assertEquals(
