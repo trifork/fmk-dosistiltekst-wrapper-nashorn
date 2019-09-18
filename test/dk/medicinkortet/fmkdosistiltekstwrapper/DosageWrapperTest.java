@@ -57,22 +57,22 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 							PlainDoseWrapper.makeDose(new BigDecimal(4))))));
 		
 		String shortText = DosisTilTekstWrapper.convertShortText(dosage);
-		Assert.assertEquals("4 stk 2 gange daglig.\n   Bemærk: mod smerter", shortText);
+		Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", shortText);
 		
 		Assert.assertEquals(
 			"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
 			"   Doseringsforløb:\n"+
 			"   4 stk 2 gange daglig.\n" +
-			"   Bemærk: mod smerter", 
+			"Bemærk: mod smerter", 
 			DosisTilTekstWrapper.convertLongText(dosage));
 		
 		DosageTranslationCombined combined = DosisTilTekstWrapper.convertCombined(dosage);
-		Assert.assertEquals("4 stk 2 gange daglig.\n   Bemærk: mod smerter", combined.getCombinedTranslation().getShortText());
+		Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", combined.getCombinedTranslation().getShortText());
 		Assert.assertEquals(
 				"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
 				"   Doseringsforløb:\n"+
 				"   4 stk 2 gange daglig.\n" +
-				"   Bemærk: mod smerter", combined.getCombinedTranslation().getLongText());
+				"Bemærk: mod smerter", combined.getCombinedTranslation().getLongText());
 	}
 
 	@Test
@@ -91,7 +91,7 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 			"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
 			"   Doseringsforløb:\n"+
 			"   4 stk + 4 stk efter behov.\n" +
-			"   Bemærk: mod smerter",
+			"Bemærk: mod smerter",
 			DosisTilTekstWrapper.convertLongText(dosage));
 	}
 
@@ -114,7 +114,7 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 			"   Doseringsforløb:\n"+
 			"   Dag 1: 1 stk\n"+
 			"   Dag 2: 2 stk.\n"+
-			"   Bemærk: mod smerter",
+			"Bemærk: mod smerter",
 			DosisTilTekstWrapper.convertLongText(dosage));
 	}
 
@@ -136,7 +136,7 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører fredag den 14. januar 2011:\n"+
 			"   Doseringsforløb:\n"+
 			"   1 stk morgen + 1 stk middag + 1 stk aften + 1 stk nat.\n" +
-			"   Bemærk: mod smerter",				
+			"Bemærk: mod smerter",				
 			DosisTilTekstWrapper.convertLongText(dosage));
 	}
 	
@@ -191,10 +191,10 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 						+ "   Torsdag: 1 stk\n"
 						+ "   Fredag: 1 stk\n"
 						+ "   Søndag: 1 stk.\n"
-						+ "   Bemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
+						+ "Bemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
-				"1 stk tirsdag, torsdag, fredag og søndag hver uge.\n   Bemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
+				"1 stk tirsdag, torsdag, fredag og søndag hver uge.\nBemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
 				DosisTilTekstWrapper.convertShortText(dosage, 300));
 		Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
 		
@@ -208,7 +208,7 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 						+ "   Torsdag: 1 stk\n"
 						+ "   Fredag: 1 stk\n"
 						+ "   Søndag: 1 stk.\n"
-						+ "   Bemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
+						+ "Bemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
 				combined.getCombinedTranslation().getLongText());
 		
 		

@@ -73,7 +73,7 @@ public class WeeklyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				"   Tirsdag: 1 stk 2 gange\n"+
 				"   Torsdag: 1 stk 2 gange\n"+
 				"   Fredag: 1 stk 2 gange\n"+
-				"   Søndag: 1 stk 2 gange.\n   Bemærk: ved måltid",
+				"   Søndag: 1 stk 2 gange.\nBemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 //		Assert.assertEquals(
 //				dk.medicinkortet.fmkdosistiltekstwrapper.shorttextconverterimpl."WeeklyRepeatedConverterImpl", 
@@ -115,7 +115,7 @@ public class WeeklyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				"   Tirsdag: 1 stk\n"+
 				"   Torsdag: 1 stk\n"+
 				"   Fredag: 1 stk\n"+
-				"   Søndag: 1 stk.\n   Bemærk: ved måltid",
+				"   Søndag: 1 stk.\nBemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				4/7., 

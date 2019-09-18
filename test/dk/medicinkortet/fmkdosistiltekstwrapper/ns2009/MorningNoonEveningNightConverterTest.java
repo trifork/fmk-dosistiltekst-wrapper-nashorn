@@ -59,13 +59,13 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 		Assert.assertEquals(
 			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
 			"   Doseringsforløb:\n"+
-			"   1 stk morgen + 2 stk middag + 3 stk aften + 4 stk nat.\n   Bemærk: !",
+			"   1 stk morgen + 2 stk middag + 3 stk aften + 4 stk nat.\nBemærk: !",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 			"MorningNoonEveningNightConverterImpl", 
 			DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"1 stk morgen, 2 stk middag, 3 stk aften og 4 stk nat.\n   Bemærk: !", 
+			"1 stk morgen, 2 stk middag, 3 stk aften og 4 stk nat.\nBemærk: !", 
 			DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 			10.0, 
@@ -90,13 +90,13 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 		Assert.assertEquals(
 			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
 			"   Doseringsforløb:\n"+
-			"   2 stk morgen + 2 stk middag + 2 stk aften + 2 stk nat.\n   Bemærk: ved måltid",
+			"   2 stk morgen + 2 stk middag + 2 stk aften + 2 stk nat.\nBemærk: ved måltid",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 			"MorningNoonEveningNightConverterImpl", 
 			DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"2 stk morgen, middag, aften og nat.\n   Bemærk: ved måltid", 
+			"2 stk morgen, middag, aften og nat.\nBemærk: ved måltid", 
 			DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 				8.0, 
@@ -120,13 +120,13 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 		Assert.assertEquals(
 			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
 			"   Doseringsforløb:\n"+
-			"   2 stk middag + 3 stk aften + 4 stk nat.\n   Bemærk: ved måltid",
+			"   2 stk middag + 3 stk aften + 4 stk nat.\nBemærk: ved måltid",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 			"MorningNoonEveningNightConverterImpl", 
 			DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"2 stk middag, 3 stk aften og 4 stk nat.\n   Bemærk: ved måltid", 
+			"2 stk middag, 3 stk aften og 4 stk nat.\nBemærk: ved måltid", 
 			DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 				9.0, 
@@ -150,13 +150,13 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 		Assert.assertEquals(
 			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
 			"   Doseringsforløb:\n"+
-			"   1 stk morgen + 2 stk middag + 3 stk aften.\n   Bemærk: ved måltid",
+			"   1 stk morgen + 2 stk middag + 3 stk aften.\nBemærk: ved måltid",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"MorningNoonEveningNightConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"1 stk morgen, 2 stk middag og 3 stk aften.\n   Bemærk: ved måltid", 
+			"1 stk morgen, 2 stk middag og 3 stk aften.\nBemærk: ved måltid", 
 			DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 				6.0, 
@@ -179,13 +179,13 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 		Assert.assertEquals(
 			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
 			"   Doseringsforløb:\n"+
-			"   0-1 stk morgen + 2-3 stk middag.\n   Bemærk: ved måltid",
+			"   0-1 stk morgen + 2-3 stk middag.\nBemærk: ved måltid",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"MorningNoonEveningNightConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"0-1 stk morgen og 2-3 stk middag.\n   Bemærk: ved måltid", 
+			"0-1 stk morgen og 2-3 stk middag.\nBemærk: ved måltid", 
 			DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 				2, 
@@ -208,13 +208,13 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 						1, 
 						NightDoseWrapper.makeDose(new BigDecimal(2)))))); 				
 		Assert.assertEquals(
-			"Daglig 2 stk nat.\n   Bemærk: ved måltid", 
+			"Daglig 2 stk nat.\nBemærk: ved måltid", 
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"MorningNoonEveningNightConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"2 stk nat.\n   Bemærk: ved måltid", 
+			"2 stk nat.\nBemærk: ved måltid", 
 			DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 				2.0, 
