@@ -256,7 +256,7 @@ public class MultiplePeriodesTest extends DosisTilTekstWrapperTestBase {
 			"   Mandag den 3. juni 2013: 2 tabletter morgen\n" +
 			"\n" +
 			"Doseringsforløbet starter tirsdag den 4. juni 2013:\n" +
-			"Bemærk: skal ikke anvendes i denne periode!",
+			"   Bemærk: skal ikke anvendes i denne periode!",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue()); 		
@@ -297,7 +297,7 @@ public class MultiplePeriodesTest extends DosisTilTekstWrapperTestBase {
 			"   Mandag den 3. juni 2013: 2 tabletter morgen\n" +
 			"\n" +
 			"Doseringsforløbet starter tirsdag den 4. juni 2013:\n" +
-			"Bemærk: skal ikke anvendes i denne periode!",
+			"   Bemærk: skal ikke anvendes i denne periode!",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue()); 		
@@ -403,7 +403,8 @@ public class MultiplePeriodesTest extends DosisTilTekstWrapperTestBase {
 			"\n" +
 			"Doseringsforløbet starter lørdag den 1. juni 2013:\n" + 
 			"   Doseringsforløb:\n" +
-			"   Efter behov: 2 tabletter efter behov.\nBemærk: ved smerter\n" +
+			"   Efter behov: 2 tabletter efter behov.\n"+
+			"   Bemærk: ved smerter\n" +
 			"\n" + 
 			"Doseringsforløbet starter tirsdag den 4. juni 2013 og gentages hver dag:\n" +
 			"   Doseringsforløb:\n" +
@@ -480,7 +481,8 @@ public class MultiplePeriodesTest extends DosisTilTekstWrapperTestBase {
 				"\n" +
 				"Doseringsforløbet starter lørdag den 1. juni 2013 kl. 14:20:\n" + 
 				"   Doseringsforløb:\n" +
-				"   Efter behov: 2 tabletter efter behov.\nBemærk: ved smerter\n" +
+				"   Efter behov: 2 tabletter efter behov.\n"+
+				"   Bemærk: ved smerter\n" +
 				"\n" + 
 				"Doseringsforløbet starter tirsdag den 4. juni 2013 kl. 10:30, gentages hver dag, og ophører torsdag den 6. juni 2013 kl. 15:30:\n" +
 				"   Doseringsforløb:\n" +

@@ -69,7 +69,8 @@ public class DailyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 		Assert.assertEquals(
 				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
 				"   Doseringsforløb:\n"+
-				"   1 tablet + 1 tablet + 1 tablet efter behov.\nBemærk: ved måltid",
+				"   1 tablet + 1 tablet + 1 tablet efter behov.\n"+
+				"   Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"ParacetamolConverterImpl", 
@@ -101,7 +102,8 @@ public class DailyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 		Assert.assertEquals(
 				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
 				"   Doseringsforløb:\n"+
-				"   1 tablet + 1 tablet + 1 tablet efter behov.\nBemærk: ved måltid",
+				"   1 tablet + 1 tablet + 1 tablet efter behov.\n"+
+				"   Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"ParacetamolConverterImpl", 

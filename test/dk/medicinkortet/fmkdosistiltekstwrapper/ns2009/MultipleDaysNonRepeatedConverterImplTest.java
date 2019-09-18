@@ -47,7 +47,8 @@ public class MultipleDaysNonRepeatedConverterImplTest  extends DosisTilTekstWrap
 				"Bemærk at doseringen har et komplekst forløb:\n" +
 				"   Doseringsforløb:\n"+
 				"   Lørdag den 1. januar 2011: 1 tablet morgen\n"+
-				"   Mandag den 3. januar 2011: 1 tablet morgen.\n   Bemærk: ved måltid",
+				"   Mandag den 3. januar 2011: 1 tablet morgen.\n"+
+				"   Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		
 		Assert.assertEquals(

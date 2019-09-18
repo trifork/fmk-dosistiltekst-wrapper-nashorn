@@ -55,7 +55,8 @@ public class SimpleNonRepeatedConverterTest extends DosisTilTekstWrapperTestBase
 		Assert.assertEquals(
 			"Doseringsforløbet starter lørdag den 1. januar 2011, og ophører søndag den 30. januar 2011:\n"+
 			"   Doseringsforløb:\n"+
-			"   Dag ikke angivet: 1 plaster.\nBemærk: 5 timer før virkning ønskes",
+			"   Dag ikke angivet: 1 plaster.\n"+
+			"   Bemærk: 5 timer før virkning ønskes",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 			"SimpleNonRepeatedConverterImpl", 
@@ -81,7 +82,8 @@ public class SimpleNonRepeatedConverterTest extends DosisTilTekstWrapperTestBase
 		Assert.assertEquals(
 			"Doseringsforløbet starter lørdag den 1. januar 2011 og ophører efter det angivne forløb:\n"+
 			"   Doseringsforløb:\n"+
-			"   Lørdag den 1. januar 2011: 1 kapsel 2 gange.\nBemærk: dagen før indlæggelse",
+			"   Lørdag den 1. januar 2011: 1 kapsel 2 gange.\n"+
+			"   Bemærk: dagen før indlæggelse",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"LimitedNumberOfDaysConverterImpl", 
@@ -106,7 +108,8 @@ public class SimpleNonRepeatedConverterTest extends DosisTilTekstWrapperTestBase
 		Assert.assertEquals(
 			"Doseringen foretages kun lørdag den 1. januar 2011:\n"+
 			"   Doseringsforløb:\n"+
-			"   Dag ikke angivet: 1 stk kl. 07:30.\nBemærk: før indlæggelse",
+			"   Dag ikke angivet: 1 stk kl. 07:30.\n"+
+			"   Bemærk: før indlæggelse",
 			DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleNonRepeatedConverterImpl", 

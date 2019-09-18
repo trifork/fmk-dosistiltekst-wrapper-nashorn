@@ -72,7 +72,8 @@ public class MorningNoonEveningNightInNDaysConverterTest extends DosisTilTekstWr
 				"   Søndag den 2. januar 2011: 1 tablet morgen\n"+
 				"   Mandag den 3. januar 2011: 1 tablet morgen\n"+
 				"   Tirsdag den 4. januar 2011: 1 tablet morgen\n"+
-				"   Onsdag den 5. januar 2011: 1 tablet morgen.\nBemærk: ved måltid",
+				"   Onsdag den 5. januar 2011: 1 tablet morgen.\n"+
+				"   Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"MorningNoonEveningNightInNDaysConverterImpl", 
