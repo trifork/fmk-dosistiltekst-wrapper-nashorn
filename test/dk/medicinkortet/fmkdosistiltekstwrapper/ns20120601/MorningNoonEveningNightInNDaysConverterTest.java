@@ -138,11 +138,7 @@ public class MorningNoonEveningNightInNDaysConverterTest extends DosisTilTekstWr
 				"MorningNoonEveningNightInNDaysConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-<<<<<<< HEAD
-				"1 tablet morgen efter behov i 5 dage.\n   Bemærk: ved måltid", 
-=======
-				"1 tablet morgen efter behov.\nBemærk: ved måltid i 5 dage", 
->>>>>>> FMK-5424 Rettet tests
+				"1 tablet morgen efter behov i 5 dage.\nBemærk: ved måltid", 
 				DosisTilTekstWrapper.convertShortText(dosage));
 
 		
