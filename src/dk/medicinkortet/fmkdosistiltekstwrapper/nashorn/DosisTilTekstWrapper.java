@@ -44,8 +44,6 @@ public class DosisTilTekstWrapper {
 	private static Object dosageProposalXMLGeneratorObj;
 	
 	public static void initialize(Reader javascriptFileReader) throws ScriptException {
-		if(engine == null) {
-			
 			ScriptEngineManager factory = new ScriptEngineManager();
 			engine = factory.getEngineByName("JavaScript");
 			
@@ -66,7 +64,6 @@ public class DosisTilTekstWrapper {
 			dailyDosisCalculatorObj = engine.eval("dosistiltekst.DailyDosisCalculator");
 			dosageProposalXMLGeneratorObj = engine.eval("dosistiltekst.DosageProposalXMLGenerator");
 			invocable = (Invocable) engine;
-		}
 	}
 	
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
