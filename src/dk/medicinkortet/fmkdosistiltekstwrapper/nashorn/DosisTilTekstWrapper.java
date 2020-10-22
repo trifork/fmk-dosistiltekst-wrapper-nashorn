@@ -32,6 +32,11 @@ public class DosisTilTekstWrapper {
 		}
 	}
 	
+	public enum TextOptions {
+		BASIC,
+		VKA
+	}
+	
 	private static ScriptEngine engine = null;
 	private static CompiledScript script;
 	private static Invocable invocable;
@@ -118,6 +123,10 @@ public class DosisTilTekstWrapper {
 	}
 	
 	public static DosageTranslationCombined convertCombined(DosageWrapper dosage) {
+		return convertCombined(dosage, TextOptions.BASIC);
+	}
+	
+	public static DosageTranslationCombined convertCombined(DosageWrapper dosage, TextOptions options) {
 		
 		if(engine == null) {
 			throw new RuntimeException("DosisTilTekstWrapper not initialized - call initialize() method before invoking any of the methods");
@@ -127,7 +136,7 @@ public class DosisTilTekstWrapper {
 		ScriptObjectMirror res;
 		try {
 			json = JSONHelper.toJsonString(dosage);
-	        res = (ScriptObjectMirror) invocable.invokeMethod(combinedTextConverterObj, "convertStr", json);
+	        res = (ScriptObjectMirror) invocable.invokeMethod(combinedTextConverterObj, "convertStr", json, options.toString());
 		} catch (ScriptException e) {
 			e.printStackTrace();
 			throw new RuntimeException("ScriptException in DosisTilTekstWrapper.convertCombined() with json " + json, e);
@@ -157,6 +166,10 @@ public class DosisTilTekstWrapper {
 	}
 	
 	public static String convertLongText(DosageWrapper dosage) {
+		return convertLongText(dosage, TextOptions.BASIC);
+	}
+	
+	public static String convertLongText(DosageWrapper dosage, TextOptions options) {
 		
 		if(engine == null) {
 			throw new RuntimeException("DosisTilTekstWrapper not initialized - call initialize() method before invoking any of the methods");
@@ -166,7 +179,7 @@ public class DosisTilTekstWrapper {
 		Object res;
 		try {
 			json = JSONHelper.toJsonString(dosage);
-	        res = invocable.invokeMethod(longTextConverterObj, "convertStr", json);
+	        res = invocable.invokeMethod(longTextConverterObj, "convertStr", json, options.toString());
 
 		} catch (ScriptException e) {
 			e.printStackTrace();
@@ -183,6 +196,10 @@ public class DosisTilTekstWrapper {
 	}
 	
 	public static String convertShortText(DosageWrapper dosage) {
+		return convertShortText(dosage, TextOptions.BASIC);
+	}
+	
+	public static String convertShortText(DosageWrapper dosage, TextOptions options) {
 		
 		if(engine == null) {
 			throw new RuntimeException("DosisTilTekstWrapper not initialized - call initialize() method before invoking any of the methods");
@@ -192,7 +209,7 @@ public class DosisTilTekstWrapper {
 		String json = "(unset)";
 		try {
 			json = JSONHelper.toJsonString(dosage);
-	        res = invocable.invokeMethod(shortTextConverterObj, "convertStr", json);
+	        res = invocable.invokeMethod(shortTextConverterObj, "convertStr", json, options);
 		} catch (ScriptException e) {
 			e.printStackTrace();
 			throw new RuntimeException("ScriptException in DosisTilTekstWrapper.convertShortText() with json " + json, e);
