@@ -18,6 +18,16 @@
 		<pathelement location="src" />
 	</path>
 	
+	<target name="resolve-js">
+		<exec executable="cmd" osfamily="windows">
+			<arg value="/C"/>
+		 	<arg value="npm.cmd install"/>
+		</exec>
+		<exec executable="npm" osfamily="unix">
+			<arg value="install"/>
+		</exec>
+	</target>
+
 	
 	<target name="compile-test" depends="compile,init-test, resolve-test">
 		<echo message="test.dir=${test.dir}" />
@@ -33,12 +43,13 @@
 	</target>
 	
 	<target name="test-on-jenkins">
-		<property name="dosistiltekstJSlocation" value="../../fmk-dosis-til-tekst-ts/workspace/target/dosistiltekst.js" />
+		<property name="dosistiltekstJSlocation" value="node_modules/fmk-dosis-til-tekst-ts/target/dosistiltekst.js" />
 		<antcall target="test"/>
 	</target>
 	
 	<target name="test-local">
-		<property name="dosistiltekstJSlocation" value="../fmk-dosis-til-tekst-ts/target/dosistiltekst.js" />
+		<!-- local: <property name="dosistiltekstJSlocation" value="../fmk-dosis-til-tekst-ts/target/dosistiltekst.js" /> -->
+		<property name="dosistiltekstJSlocation" value="node_modules/fmk-dosis-til-tekst-ts/target/dosistiltekst.js" />
 		<antcall target="test"/>
 	</target>
 	
