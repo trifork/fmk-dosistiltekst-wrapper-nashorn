@@ -74,6 +74,40 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 				"   4 stk 2 gange daglig.\n" +
 				"   Bemærk: mod smerter", combined.getCombinedTranslation().getLongText());
 	}
+	
+	@Test
+	public void testWithTreatmentStartEnd() throws Exception {
+		DosageWrapper dosage = 
+			DosageWrapper.makeDosage(
+				StructuresWrapper.makeStructures(
+					UnitOrUnitsWrapper.makeUnit("stk"),
+					DateOrDateTimeWrapper.makeDate("2011-01-01"), 
+					DateOrDateTimeWrapper.makeDate("2011-01-05"),
+					StructureWrapper.makeStructure(
+						1, "mod smerter", 
+						DateOrDateTimeWrapper.makeDate("2011-01-01"), null,
+						DayWrapper.makeDay(1,
+							PlainDoseWrapper.makeDose(new BigDecimal(4)), 
+							PlainDoseWrapper.makeDose(new BigDecimal(4))))));
+		
+		String shortText = DosisTilTekstWrapper.convertShortText(dosage);
+		Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", shortText);
+		
+		Assert.assertEquals(
+			"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
+			"   Doseringsforløb:\n"+
+			"   4 stk 2 gange daglig.\n" +
+			"   Bemærk: mod smerter", 
+			DosisTilTekstWrapper.convertLongText(dosage));
+		
+		DosageTranslationCombined combined = DosisTilTekstWrapper.convertCombined(dosage);
+		Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", combined.getCombinedTranslation().getShortText());
+		Assert.assertEquals(
+				"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
+				"   Doseringsforløb:\n"+
+				"   4 stk 2 gange daglig.\n" +
+				"   Bemærk: mod smerter", combined.getCombinedTranslation().getLongText());
+	}
 
 	@Test
 	public void testDaglig4StkModSmerterPlus4StkEfterBehovModSmerter() throws Exception {

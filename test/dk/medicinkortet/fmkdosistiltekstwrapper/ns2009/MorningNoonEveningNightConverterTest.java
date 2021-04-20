@@ -384,15 +384,14 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 						MorningDoseWrapper.makeDose(new BigDecimal(0), new BigDecimal(1)), 
 						EveningDoseWrapper.makeDose(new BigDecimal(0.5), new BigDecimal(1.5))))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter tirsdag den 26. juni 2012 kl. 00:00 og gentages hver dag:\n"+
-				"   Doseringsforløb:\n"+
-				"   0-1 tablet morgen + 0,5-1,5 tabletter aften",
+				"Dosering fra d. 26. juni 2012 kl. 0:00:\n"+
+				"0-1 tablet morgen og 0,5-1,5 tabletter aften - hver dag",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"MorningNoonEveningNightConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"0-1 tablet morgen og 1/2-1 1/2 tabletter aften", 
+				"0-1 tablet morgen og 0,5-1,5 tabletter aften", 
 				DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 				0.5, 

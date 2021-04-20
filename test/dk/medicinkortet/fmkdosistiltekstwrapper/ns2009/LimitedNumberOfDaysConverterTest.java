@@ -180,5 +180,24 @@ public class LimitedNumberOfDaysConverterTest extends DosisTilTekstWrapperTestBa
 				DosisTilTekstWrapper.convertShortText(dosage));
 	}
 	
+	// FMK-6398 Fejl i doseringstekst ved ikke-gentaget dosering
+	@Test
+	public void test1gangNotIterated() throws Exception {
+		DosageWrapper dosage = DosageWrapper.makeDosage(
+			StructuresWrapper.makeStructures(
+				UnitOrUnitsWrapper.makeUnit("ml"), 
+				StructureWrapper.makeStructure(
+					0, null, 
+					DateOrDateTimeWrapper.makeDate("2010-01-01"), DateOrDateTimeWrapper.makeDate("2110-01-01"), 
+					DayWrapper.makeDay(
+						1, 
+						PlainDoseWrapper.makeDose(new BigDecimal(5), false) 
+					))));			
+					
+		Assert.assertEquals(
+				"5 ml 1 gang", 
+				DosisTilTekstWrapper.convertShortText(dosage));
+	}
+	
 	
 }

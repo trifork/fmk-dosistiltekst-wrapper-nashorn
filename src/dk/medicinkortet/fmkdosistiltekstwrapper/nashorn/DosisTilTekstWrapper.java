@@ -431,19 +431,23 @@ public class DosisTilTekstWrapper {
 		}
 		Object value = res.get("value");
 		if(value != null) {
-			if(value instanceof Integer) {
-				return new DailyDosis(BigDecimal.valueOf((Integer)value), unitWrapper);
-			}
-			else if(value instanceof Double) {
-				return new DailyDosis(BigDecimal.valueOf((double)value), unitWrapper);
-			}
-			else {
-				throw new RuntimeException("Unexpected type of dailydosis value: " + value);
-			}
+			return new DailyDosis(getValueAsBigDecimal(value), unitWrapper);
 		}
 		else {
 			ScriptObjectMirror interval = (ScriptObjectMirror)res.get("interval");
-			return new DailyDosis(new Interval<BigDecimal>(BigDecimal.valueOf((double)interval.get("minimum")), BigDecimal.valueOf((double)interval.get("maximum"))), unitWrapper);
+			return new DailyDosis(new Interval<BigDecimal>(getValueAsBigDecimal(interval.get("minimum")), getValueAsBigDecimal(interval.get("minimum"))), unitWrapper);
+		}
+	}
+
+	private static BigDecimal getValueAsBigDecimal(Object value) {
+		if(value instanceof Integer) {
+			return BigDecimal.valueOf((Integer)value);
+		}
+		else if(value instanceof Double) {
+			return BigDecimal.valueOf((double)value);
+		}
+		else {
+			throw new RuntimeException("Unexpected type of dailydosis value: " + value);
 		}
 	}
 }

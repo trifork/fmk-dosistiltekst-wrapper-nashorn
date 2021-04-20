@@ -42,6 +42,7 @@ DosageTranslationCombined combined = DosisTilTekstWrapper.convertCombined(dosage
 ### XML generering ud fra doseringsforslag
 
 Eksempel på anvendelse:
+
 ```java
 import dk.medicinkortet.fmkdosistiltekstwrapper.FMKVersion;
 ...
@@ -54,24 +55,26 @@ String longText = res.getLongText();
 String shortText = res.getShortText();
 ```
 Eksempel på anvendelse med flere doseringsperioder:
-```
+
+```java
 DosageProposalResult res = DosisTilTekstWrapper.getDosageProposalResult("{M+M+A+N}{PN}{N daglig}", "{1}{2}{1}",
 				"{1+2+3+4}{dag 1: 2 dag 2: 3}{2}", "tablet", "tabletter", "tages med rigeligt vand",
 				Arrays.asList(SIMPLE_DATE_FORMAT.parse("2010-01-01"), SIMPLE_DATE_FORMAT.parse("2010-02-01"), SIMPLE_DATE_FORMAT.parse("2010-03-01")),
 				Arrays.asList(SIMPLE_DATE_FORMAT.parse("2010-01-31"), SIMPLE_DATE_FORMAT.parse("2010-02-28"), SIMPLE_DATE_FORMAT.parse("2010-03-31")),
 				FMKVersion.FMK146, 1);
-```				
-
-Eksempel på anvendelse med flere doseringsperioder, og parametriseret max-længde af den korte doseringstekst:
 ```
+Eksempel på anvendelse med flere doseringsperioder, og parametriseret max-længde af den korte doseringstekst:
+
+```java
 DosageProposalResult res = DosisTilTekstWrapper.getDosageProposalResult("{M+M+A+N}{PN}{N daglig}", "{1}{2}{1}",
 				"{1+2+3+4}{dag 1: 2 dag 2: 3}{2}", "tablet", "tabletter", "tages med rigeligt vand",
 				Arrays.asList(SIMPLE_DATE_FORMAT.parse("2010-01-01"), SIMPLE_DATE_FORMAT.parse("2010-02-01"), SIMPLE_DATE_FORMAT.parse("2010-03-01")),
 				Arrays.asList(SIMPLE_DATE_FORMAT.parse("2010-01-31"), SIMPLE_DATE_FORMAT.parse("2010-02-28"), SIMPLE_DATE_FORMAT.parse("2010-03-31")),
 				FMKVersion.FMK146, 1, 1000);
-```		
-
+```
+		
 Eksempel på anvendelse uden doseringsslutdato:
+
 ```java
 import dk.medicinkortet.fmkdosistiltekstwrapper.FMKVersion;
 ...
