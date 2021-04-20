@@ -435,7 +435,7 @@ public class DosisTilTekstWrapper {
 		}
 		else {
 			ScriptObjectMirror interval = (ScriptObjectMirror)res.get("interval");
-			return new DailyDosis(new Interval<BigDecimal>(getValueAsBigDecimal(interval.get("minimum")), getValueAsBigDecimal(interval.get("minimum"))), unitWrapper);
+			return new DailyDosis(new Interval<BigDecimal>(getValueAsBigDecimal(interval.get("minimum")), getValueAsBigDecimal(interval.get("maximum"))), unitWrapper);
 		}
 	}
 
