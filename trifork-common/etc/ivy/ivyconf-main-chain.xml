@@ -4,17 +4,12 @@
 		    <!--cache name="cache"/-->
  		    <resolver ref="shared"/>
 
- 		    <!-- nexus.trifork.com -->
- 		    <resolver ref="trifork-public-central" />
- 		    <resolver ref="trifork-public-snapshots"/>
- 		    <resolver ref="trifork-public-releases"/>
- 		    <resolver ref="trifork-public-thirdparty"/>
-
  		    <!-- ci.fmk.netic.dk/nexus -->
- 		    <resolver ref="intranet-internal"/>
- 		    <resolver ref="intranet-public"/>
+ 		    <resolver ref="trifork-internal"/>
+ 		    <resolver ref="public"/>
  		    <resolver ref="releases" />
- 		    <resolver ref="intranet-public-snapshot" />
+ 		    <resolver ref="snapshots" />
+ 		    <resolver ref="public-snapshot" />
 
 
 		</chain>
