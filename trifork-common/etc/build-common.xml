@@ -387,7 +387,7 @@
            <echo message="version=${revision}" file="${build.dir}/${ant.project.name}.properties" append="false" />                                                       
            <property file="${build.dir}/${ant.project.name}.properties" />                                                                                                        
       	<echo file="target/version.env" append="false">
-           version=${sourcerev}
+           version=${revision}
         </echo>
     </target>
 
