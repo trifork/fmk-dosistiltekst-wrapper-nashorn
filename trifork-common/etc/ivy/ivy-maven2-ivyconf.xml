@@ -1,43 +1,26 @@
 <ivysettings>
 
 	<property name="ibiblio-maven2-pattern" value="[organisation]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]" override="false" />
+	<property name="m2-pattern" value="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]" override="false" />
+ 
 	<credentials host="ci.fmk.netic.dk"
-                 realm="Sonatype Nexus Repository Manager"
-                 username="${repo.user}" passwd="${repo.pass}"/>
+                      realm="Nexus Repository Manager"
+				      username="${repoUser}" passwd="${repoPassword}"/>
+
 	<resolvers>
-		<ibiblio name="trifork-public-central"
-	                 m2compatible="true"
-	                 usepoms="true"
-	                 useMavenMetadata="true"
-	                 pattern="/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" root="https://nexus.trifork.com/content/repositories/central/"/>
-
-		<ibiblio name="trifork-public-releases"
-	                 m2compatible="true"
-	                 usepoms="true"
-	                 useMavenMetadata="true"
-	                 pattern="/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
-	                 root="https://nexus.trifork.com/content/repositories/releases"/>
-
-		<ibiblio name="trifork-public-thirdparty"
-	                 m2compatible="true"
-	                 usepoms="true"
-	                 useMavenMetadata="true"
-	                 pattern="/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
-	                 root="https://nexus.trifork.com/content/repositories/thirdparty"/>
-
-		<ibiblio name="intranet-public"
+		<ibiblio name="public"
 				 root="https://ci.fmk.netic.dk/nexus/content/groups/public/"
 				 pattern="${ibiblio-maven2-pattern}"
 				 m2compatible="true"
 				 checkmodified="false" />
 
-		<ibiblio name="intranet-public-snapshot"
+		<ibiblio name="public-snapshot"
 				 root="https://ci.fmk.netic.dk/nexus/content/groups/public-snapshots/"
 				 pattern="/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
 				 m2compatible="true"
 				 checkmodified="false" />
 
-		<url name="intranet-internal" m2compatible="true">
+		<url name="trifork-internal" m2compatible="true">
   			<ivy pattern="https://ci.fmk.netic.dk/nexus/content/repositories/trifork-internal/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).xml" />
   			<artifact pattern="https://ci.fmk.netic.dk/nexus/content/repositories/trifork-internal/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
 		</url>
@@ -47,15 +30,22 @@
              <ivy pattern="https://ci.fmk.netic.dk/nexus/content/repositories/releases/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).xml" />
             <artifact pattern="https://ci.fmk.netic.dk/nexus/content/repositories/releases/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
         </url>
+        <url name="snapshots"
+             m2compatible="true">
+             <ivy pattern="https://ci.fmk.netic.dk/nexus/content/repositories/snapshots/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).xml" />
+            <artifact pattern="https://ci.fmk.netic.dk/nexus/content/repositories/snapshots/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
+        </url>
 
+ 		 <chain name="local-m2">
+            <filesystem name="local-maven2" m2compatible="true" >
+                <artifact pattern="${m2-pattern}"/>
+                <ivy pattern="${m2-pattern}"/>
+            </filesystem>
+            <ibiblio name="central" m2compatible="true"/>
+        </chain>
+            
 		<chain name="trifork-public-chain" changingPattern=".*SNAPSHOT" checkmodified="true">
 
-	        <ibiblio name="trifork-public-snapshots"
-	                 m2compatible="true"
-	                 usepoms="true"
-	                 useMavenMetadata="true"
-	                 pattern="/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"
-	                 root="https://nexus.trifork.com/content/repositories/snapshots"/>
     	</chain>
 
 	</resolvers>

@@ -3,8 +3,8 @@
 	module's jar file -->
 <project name="fmk-dosistiltekst-wrapper-nashorn" default="jar" basedir=".">
 
-	<property name="sourceversion" value="1.8"/>
-	<property name="targetversion" value="1.8"/>
+	<property name="sourceversion" value="11"/>
+	<property name="targetversion" value="11"/>
 		
 	<property file="build.properties" />
 	<property file="revision.properties" />
