@@ -386,7 +386,9 @@
            <mkdir dir="${build.dir}"/>                                                                                                                                            
            <echo message="version=${revision}" file="${build.dir}/${ant.project.name}.properties" append="false" />                                                       
            <property file="${build.dir}/${ant.project.name}.properties" />                                                                                                        
-					       
+      	<echo file="target/version.env" append="false">
+           version=${sourcerev}
+        </echo>
     </target>
 
 	<target name="svn-revision">
@@ -425,9 +427,6 @@
   	  	   	<isset property="env.SVN_REVISION"/>
   	  	</condition>
   	<echo message="source revision: ${sourcerev}"/>
-  	<echo file="target/version.env" append="false">
-           version=${sourcerev}
-        </echo>
   </target>
 	
 	<scriptdef name="substring" language="javascript">
