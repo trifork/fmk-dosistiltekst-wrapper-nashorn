@@ -405,7 +405,7 @@
 	
 	<target name="publish-from-jenkins" depends="resolve-build, source-rev" >
 	  <delete file="target/ivy.xml"/>
-      <ivy:publish artifactspattern="target/[artifact].[ext]" resolver="intranet-internal" pubrevision="${sourcerev}" pubdate="${now}" status="integration" overwrite="false" />
+      <ivy:publish artifactspattern="target/[artifact].[ext]" resolver="trifork-internal" pubrevision="${sourcerev}" pubdate="${now}" status="integration" overwrite="false" />
   </target>
 	
   <target name="source-rev">
@@ -454,7 +454,7 @@
 	
 	<target name="publish-internal-do" depends="">
 		<delete file="target/ivy.xml"/>	
-		<ivy:publish artifactspattern="target/[artifact].[ext]" resolver="intranet-internal" pubrevision="${revision}" pubdate="${now}" status="integration" overwrite="true"/>		
+		<ivy:publish artifactspattern="target/[artifact].[ext]" resolver="trifork-internal" pubrevision="${revision}" pubdate="${now}" status="integration" overwrite="true"/>		
 	</target>
     
     <target name="ivyreport" depends="init, resolve-build-maybe, resolve-deploy, resolve-test">
