@@ -104,13 +104,6 @@ public class DosisTilTekstWrapper {
         return DosisTilTekstWrapperNode.getLongTextConverterClassName(dosage);
     }
 
-    public static String getLongTextConverterClassName(DosageWrapper dosage, int maxLength) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.getLongTextConverterClassName(dosage, maxLength);
-        }
-        return DosisTilTekstWrapperNode.getLongTextConverterClassName(dosage, maxLength);
-    }
-
     public static DosageType getDosageType(DosageWrapper dosage) {
         if (usesNashorn) {
             return DosisTilTekstWrapperNashorn.getDosageType(dosage);

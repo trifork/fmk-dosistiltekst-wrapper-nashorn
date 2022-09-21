@@ -118,10 +118,6 @@ public class DosisTilTekstWrapperNode {
         return RequestHelper.post(baseUrl + endpoint, inputJson, "getLongTextConverterClassName");
     }
 
-    public static String getLongTextConverterClassName(DosageWrapper dosage, int maxLength) {
-        return null; // TODO: corresponding method does not exist in dosis-til-tekst-ts
-    }
-
     public static DosageType getDosageType(DosageWrapper dosage) {
         checkIfInitialized();
 
