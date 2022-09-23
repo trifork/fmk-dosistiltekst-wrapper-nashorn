@@ -12,7 +12,8 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <revision>1.1.0</revision>  <!-- No snapshot here - well be added by Jenkins - bump version manually after release-->
+        <revision>1.1.1
+        </revision>  <!-- No snapshot here - will be added by Jenkins - bump version manually after release-->
     </properties>
 
     <dependencies>
