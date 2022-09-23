@@ -78,4 +78,21 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+            emailext body: '$DEFAULT_CONTENT',
+                    recipientProviders: [culprits(), requestor()],
+                    subject: '$DEFAULT_SUBJECT'
+        }
+        unstable {
+            emailext body: '$DEFAULT_CONTENT',
+                    recipientProviders: [culprits(), requestor()],
+                    subject: '$DEFAULT_SUBJECT'
+        }
+        fixed {
+            emailext body: '$DEFAULT_CONTENT',
+                    recipientProviders: [culprits(), requestor()],
+                    subject: '$DEFAULT_SUBJECT'
+        }
+    }
 }
