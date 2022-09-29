@@ -39,6 +39,9 @@ public class DosisTilTekstWrapperNode {
 
         var responseBody = RequestHelper.post(baseUrl + endpoint, inputJson, "getDosageProposalResult");
 
+        if (responseBody == null || responseBody.isEmpty())
+            return null;
+
         var responseDTO = DTOHelper.convertJsonToDTO(responseBody, DosageProposalResultDTO.class, "getDosageProposalResult");
         return new DosageProposalResult(responseDTO.get_xml(), responseDTO.get_shortDosageTranslation(), responseDTO.get_longDosageTranslation());
     }
@@ -71,7 +74,10 @@ public class DosisTilTekstWrapperNode {
         var dto = new DosageWrapperWithOptionsDTO(dosageJson, options.toString());
         var inputJson = DTOHelper.convertDTOToJson(dto, "convertLongText");
 
-        return RequestHelper.post(baseUrl + endpoint, inputJson, "convertLongText");
+        var result = RequestHelper.post(baseUrl + endpoint, inputJson, "convertLongText");
+        if (result == null || result.isEmpty())
+            return null;
+        return result;
     }
 
     public static String convertShortText(DosageWrapper dosage, DosisTilTekstWrapper.TextOptions options) {
@@ -87,7 +93,10 @@ public class DosisTilTekstWrapperNode {
         var dto = new DosageWrapperWithOptionsAndMaxLengthDTO(dosageJson, maxLength, options.toString());
         var inputJson = DTOHelper.convertDTOToJson(dto, "convertShortText");
 
-        return RequestHelper.post(baseUrl + endpoint, inputJson, "convertShortText");
+        var result = RequestHelper.post(baseUrl + endpoint, inputJson, "convertShortText");
+        if (result == null || result.isEmpty())
+            return null;
+        return result;
     }
 
     public static String getShortTextConverterClassName(DosageWrapper dosage) {
@@ -103,7 +112,10 @@ public class DosisTilTekstWrapperNode {
         var dto = new DosageWrapperWithMaxLengthDTO(dosageJson, maxLength);
         var inputJson = DTOHelper.convertDTOToJson(dto, "getShortTextConverterClassName");
 
-        return RequestHelper.post(baseUrl + endpoint, inputJson, "getShortTextConverterClassName");
+        var result = RequestHelper.post(baseUrl + endpoint, inputJson, "getShortTextConverterClassName");
+        if (result == null || result.isEmpty())
+            return null;
+        return result;
     }
 
     public static String getLongTextConverterClassName(DosageWrapper dosage) {
@@ -115,7 +127,10 @@ public class DosisTilTekstWrapperNode {
         var dto = new DosageWrapperDTO(dosageJson);
         var inputJson = DTOHelper.convertDTOToJson(dto, "getLongTextConverterClassName");
 
-        return RequestHelper.post(baseUrl + endpoint, inputJson, "getLongTextConverterClassName");
+        var result = RequestHelper.post(baseUrl + endpoint, inputJson, "getLongTextConverterClassName");
+        if (result == null || result.isEmpty())
+            return null;
+        return result;
     }
 
     public static DosageType getDosageType(DosageWrapper dosage) {
