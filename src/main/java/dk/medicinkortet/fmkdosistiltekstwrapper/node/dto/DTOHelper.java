@@ -76,7 +76,7 @@ public class DTOHelper {
     public static DailyDosis convertDTOToDailyDosis(DailyDosisDTO dto) {
         if (dto.getValue() != null) {
             return new DailyDosis(
-                    BigDecimal.valueOf(dto.getValue()),
+                    dto.getValue(),
                     convertDTOToUnitOrUnitsWrapper(dto.getUnitOrUnits())
             );
         }

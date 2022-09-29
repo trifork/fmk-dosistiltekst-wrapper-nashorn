@@ -1,25 +1,27 @@
 package dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects.combinedconversion;
 
+import java.math.BigDecimal;
+
 public class DailyDosisDTO {
 
-    private Integer value;
+    private BigDecimal value;
     private IntervalDTO interval;
     private UnitOrUnitsWrapperDTO unitOrUnits;
 
     public DailyDosisDTO() {
     }
 
-    public DailyDosisDTO(Integer value, IntervalDTO interval, UnitOrUnitsWrapperDTO unitOrUnits) {
+    public DailyDosisDTO(BigDecimal value, IntervalDTO interval, UnitOrUnitsWrapperDTO unitOrUnits) {
         this.value = value;
         this.interval = interval;
         this.unitOrUnits = unitOrUnits;
     }
 
-    public Integer getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 
