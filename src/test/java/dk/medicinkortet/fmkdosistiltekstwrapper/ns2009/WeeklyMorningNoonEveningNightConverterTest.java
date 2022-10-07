@@ -56,14 +56,12 @@ public class WeeklyMorningNoonEveningNightConverterTest extends DosisTilTekstWra
 				"WeeklyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter fredag den 8. juni 2012, forløbet gentages hver uge, og ophører mandag den 31. december 2012.\n"+
-				"Bemærk at doseringen har et komplekst forløb:\n"+
-				 "   Doseringsforløb:\n"+
-				 "   Torsdag: 1 stk morgen + 1 stk aften\n"+
-				 "   Fredag: 1 stk morgen + 1 stk aften\n"+
-				 "   Søndag: 1 stk morgen + 1 stk aften.\n"+
-				 "   Bemærk: ved måltid",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 8. juni 2012 til d. 31. dec. 2012 - gentages hver uge:\n" +
+                        "Torsdag: 1 stk morgen og 1 stk aften\n" +
+                        "Fredag: 1 stk morgen og 1 stk aften\n" +
+                        "Søndag: 1 stk morgen og 1 stk aften\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				6/7., 
 				DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().doubleValue(),

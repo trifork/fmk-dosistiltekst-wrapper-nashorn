@@ -44,10 +44,9 @@ public class SimpleAccordingToNeedConverterTest extends DosisTilTekstWrapperTest
 						DayWrapper.makeDay(0,
 							PlainDoseWrapper.makeDose(new BigDecimal(2), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   Efter behov: 2 stk efter behov",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "2 stk efter behov",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleAccordingToNeedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -69,11 +68,10 @@ public class SimpleAccordingToNeedConverterTest extends DosisTilTekstWrapperTest
 						DayWrapper.makeDay(0,
 							PlainDoseWrapper.makeDose(new BigDecimal(2), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   Efter behov: 2 stk efter behov.\n"+
-				"   Bemærk: ved smerter",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "2 stk efter behov\n" +
+                        "Bemærk: ved smerter",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleAccordingToNeedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -95,10 +93,9 @@ public class SimpleAccordingToNeedConverterTest extends DosisTilTekstWrapperTest
 						DayWrapper.makeDay(0,
 							PlainDoseWrapper.makeDose(new BigDecimal(1), new BigDecimal(2), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   Efter behov: 1-2 stk efter behov",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "1-2 stk efter behov",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleAccordingToNeedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));

@@ -49,10 +49,9 @@ public class SimpleAccordingToNeedConverterTest extends DosisTilTekstWrapperTest
 						DayWrapper.makeDay(0,
 							PlainDoseWrapper.makeDose(new BigDecimal(2), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   Efter behov: 2 tabletter efter behov",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "2 tabletter efter behov",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleAccordingToNeedConverterImpl",
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -74,10 +73,9 @@ public class SimpleAccordingToNeedConverterTest extends DosisTilTekstWrapperTest
 						DayWrapper.makeDay(0,
 							PlainDoseWrapper.makeDose(new BigDecimal(2), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   Efter behov: 2 tabletter efter behov",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "2 tabletter efter behov",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleAccordingToNeedConverterImpl",
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -100,10 +98,9 @@ public class SimpleAccordingToNeedConverterTest extends DosisTilTekstWrapperTest
 							PlainDoseWrapper.makeDose(new BigDecimal(2), true),
 							PlainDoseWrapper.makeDose(new BigDecimal(2), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter onsdag den 1. januar 2014, gentages hver dag, og ophører onsdag den 31. december 2014:\n"+
-				"   Doseringsforløb:\n"+
-				"   Efter behov: 2 tabletter efter behov 2 gange",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2014 til d. 31. dec. 2014:\n" +
+                        "2 tabletter efter behov 2 gange",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));
@@ -121,10 +118,9 @@ public class SimpleAccordingToNeedConverterTest extends DosisTilTekstWrapperTest
 							MorningDoseWrapper.makeDose(new BigDecimal(2), true), 
 							EveningDoseWrapper.makeDose(new BigDecimal(2), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører tirsdag den 11. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   2 tabletter morgen efter behov + 2 tabletter aften efter behov",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "2 tabletter morgen efter behov og 2 tabletter aften efter behov",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"MorningNoonEveningNightConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));

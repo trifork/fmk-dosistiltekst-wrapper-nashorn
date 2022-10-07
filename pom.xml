@@ -44,7 +44,7 @@
         <dependency>
             <groupId>trifork</groupId>
             <artifactId>fmk-dosistiltekst-wrapper</artifactId>
-            <version>20220908140829-b139</version>
+            <version>1.1.4</version>
         </dependency>
 
 

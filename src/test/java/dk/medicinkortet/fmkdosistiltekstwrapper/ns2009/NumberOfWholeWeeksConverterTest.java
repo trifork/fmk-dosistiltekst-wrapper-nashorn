@@ -28,18 +28,17 @@ public class NumberOfWholeWeeksConverterTest extends DosisTilTekstWrapperTestBas
                         )
                 ));
 
-        Assert.assertEquals("Doseringsforløbet starter fredag den 7. februar 2014 kl. 07:19, forløbet gentages efter 14 dage:\n" +
-        		 "   Doseringsforløb:\n" +
-                 "   Fredag den 7. februar 2014: 1 stk middag\n" +
-                 "   Lørdag den 8. februar 2014: 1 stk middag\n" +
-                 "   Søndag den 9. februar 2014: 1 stk middag\n" +
-                 "   Mandag den 10. februar 2014: 1 stk middag\n" +
-                 "   Tirsdag den 11. februar 2014: 1 stk middag\n" +
-                 "   Onsdag den 12. februar 2014: 1 stk middag\n" +
-                 "   Torsdag den 13. februar 2014: 1 stk middag.\n"+
-				 "   Bemærk: ved måltid", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals("Dosering fra d. 7. feb. 2014 kl. 7:19 - gentages hver 14. dag:\n" +
+                "Dag 1: 1 stk middag\n" +
+                "Dag 2: 1 stk middag\n" +
+                "Dag 3: 1 stk middag\n" +
+                "Dag 4: 1 stk middag\n" +
+                "Dag 5: 1 stk middag\n" +
+                "Dag 6: 1 stk middag\n" +
+                "Dag 7: 1 stk middag\n" +
+                "Bemærk: ved måltid", DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
-		Assert.assertEquals("1 stk middag daglig i en uge, herefter en uges pause.\nBemærk: ved måltid", DosisTilTekstWrapper.convertShortText(dosage, 100));
+        Assert.assertEquals("1 stk middag daglig i en uge, herefter en uges pause.\nBemærk: ved måltid", DosisTilTekstWrapper.convertShortText(dosage, 100));
         Assert.assertEquals(
                 0.5,
                 DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().doubleValue(),
@@ -64,15 +63,14 @@ public class NumberOfWholeWeeksConverterTest extends DosisTilTekstWrapperTestBas
                         )
                 ));
 
-        Assert.assertEquals("Doseringsforløbet starter fredag den 7. februar 2014 kl. 07:19, forløbet gentages efter 14 dage:\n" +
-                "   Doseringsforløb:\n" +
-                "   Fredag den 7. februar 2014: 1 stk middag + 1 stk aften\n" +
-                "   Lørdag den 8. februar 2014: 1 stk middag + 1 stk aften\n" +
-                "   Søndag den 9. februar 2014: 1 stk middag + 1 stk aften\n" +
-                "   Mandag den 10. februar 2014: 1 stk middag + 1 stk aften\n" +
-                "   Tirsdag den 11. februar 2014: 1 stk middag + 1 stk aften\n" +
-                "   Onsdag den 12. februar 2014: 1 stk middag + 1 stk aften\n" +
-                "   Torsdag den 13. februar 2014: 1 stk middag + 1 stk aften", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals("Dosering fra d. 7. feb. 2014 kl. 7:19 - gentages hver 14. dag:\n" +
+                "Dag 1: 1 stk middag og 1 stk aften\n" +
+                "Dag 2: 1 stk middag og 1 stk aften\n" +
+                "Dag 3: 1 stk middag og 1 stk aften\n" +
+                "Dag 4: 1 stk middag og 1 stk aften\n" +
+                "Dag 5: 1 stk middag og 1 stk aften\n" +
+                "Dag 6: 1 stk middag og 1 stk aften\n" +
+                "Dag 7: 1 stk middag og 1 stk aften", DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertEquals(
                 1.0,
@@ -98,15 +96,14 @@ public class NumberOfWholeWeeksConverterTest extends DosisTilTekstWrapperTestBas
                         )
                 ));
 
-        Assert.assertEquals("Doseringsforløbet starter fredag den 7. februar 2014 kl. 07:19, forløbet gentages efter 14 dage:\n" +
-                "   Doseringsforløb:\n" +
-                "   Fredag den 7. februar 2014: 1 stk 2 gange\n" +
-                "   Lørdag den 8. februar 2014: 1 stk 2 gange\n" +
-                "   Søndag den 9. februar 2014: 1 stk 2 gange\n" +
-                "   Mandag den 10. februar 2014: 1 stk 2 gange\n" +
-                "   Tirsdag den 11. februar 2014: 1 stk 2 gange\n" +
-                "   Onsdag den 12. februar 2014: 1 stk 2 gange\n" +
-                "   Torsdag den 13. februar 2014: 1 stk 2 gange", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals("Dosering fra d. 7. feb. 2014 kl. 7:19 - gentages hver 14. dag:\n" +
+                "Dag 1: 1 stk 2 gange\n" +
+                "Dag 2: 1 stk 2 gange\n" +
+                "Dag 3: 1 stk 2 gange\n" +
+                "Dag 4: 1 stk 2 gange\n" +
+                "Dag 5: 1 stk 2 gange\n" +
+                "Dag 6: 1 stk 2 gange\n" +
+                "Dag 7: 1 stk 2 gange", DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertEquals("1 stk 2 gange daglig i en uge, herefter en uges pause", DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertEquals(
                 1.0,
@@ -132,15 +129,14 @@ public class NumberOfWholeWeeksConverterTest extends DosisTilTekstWrapperTestBas
                         )
                 ));
 
-        Assert.assertEquals("Doseringsforløbet starter fredag den 7. februar 2014 kl. 07:19, forløbet gentages efter 42 dage:\n" +
-                "   Doseringsforløb:\n" +
-                "   Fredag den 7. februar 2014: 1 stk middag\n" +
-                "   Lørdag den 8. februar 2014: 1 stk middag\n" +
-                "   Søndag den 9. februar 2014: 1 stk middag\n" +
-                "   Mandag den 10. februar 2014: 1 stk middag\n" +
-                "   Tirsdag den 11. februar 2014: 1 stk middag\n" +
-                "   Onsdag den 12. februar 2014: 1 stk middag\n" +
-                "   Torsdag den 13. februar 2014: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals("Dosering fra d. 7. feb. 2014 kl. 7:19 - gentages hver 42. dag:\n" +
+                "Dag 1: 1 stk middag\n" +
+                "Dag 2: 1 stk middag\n" +
+                "Dag 3: 1 stk middag\n" +
+                "Dag 4: 1 stk middag\n" +
+                "Dag 5: 1 stk middag\n" +
+                "Dag 6: 1 stk middag\n" +
+                "Dag 7: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertEquals("1 stk middag daglig i en uge, herefter 5 ugers pause", DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertEquals(
                 0.166666667,
@@ -173,22 +169,21 @@ public class NumberOfWholeWeeksConverterTest extends DosisTilTekstWrapperTestBas
                         )
                 ));
 
-        Assert.assertEquals("Doseringsforløbet starter fredag den 7. februar 2014 kl. 07:19, forløbet gentages efter 42 dage:\n" +
-                "   Doseringsforløb:\n" +
-                "   Fredag den 7. februar 2014: 1 stk middag\n" +
-                "   Lørdag den 8. februar 2014: 1 stk middag\n" +
-                "   Søndag den 9. februar 2014: 1 stk middag\n" +
-                "   Mandag den 10. februar 2014: 1 stk middag\n" +
-                "   Tirsdag den 11. februar 2014: 1 stk middag\n" +
-                "   Onsdag den 12. februar 2014: 1 stk middag\n" +
-                "   Torsdag den 13. februar 2014: 1 stk middag\n" +
-                "   Fredag den 14. februar 2014: 1 stk middag\n" +
-                "   Lørdag den 15. februar 2014: 1 stk middag\n" +
-                "   Søndag den 16. februar 2014: 1 stk middag\n" +
-                "   Mandag den 17. februar 2014: 1 stk middag\n" +
-                "   Tirsdag den 18. februar 2014: 1 stk middag\n" +
-                "   Onsdag den 19. februar 2014: 1 stk middag\n" +
-                "   Torsdag den 20. februar 2014: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals("Dosering fra d. 7. feb. 2014 kl. 7:19 - gentages hver 42. dag:\n" +
+                "Dag 1: 1 stk middag\n" +
+                "Dag 2: 1 stk middag\n" +
+                "Dag 3: 1 stk middag\n" +
+                "Dag 4: 1 stk middag\n" +
+                "Dag 5: 1 stk middag\n" +
+                "Dag 6: 1 stk middag\n" +
+                "Dag 7: 1 stk middag\n" +
+                "Dag 8: 1 stk middag\n" +
+                "Dag 9: 1 stk middag\n" +
+                "Dag 10: 1 stk middag\n" +
+                "Dag 11: 1 stk middag\n" +
+                "Dag 12: 1 stk middag\n" +
+                "Dag 13: 1 stk middag\n" +
+                "Dag 14: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertEquals("1 stk middag daglig i 2 uger, herefter 4 ugers pause", DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertEquals(
                 0.333333333,
@@ -223,22 +218,21 @@ public class NumberOfWholeWeeksConverterTest extends DosisTilTekstWrapperTestBas
                         )
                 ));
 
-        Assert.assertEquals("Doseringsforløbet starter fredag den 7. februar 2014 kl. 07:19, forløbet gentages efter 14 dage:\n" +
-                "   Doseringsforløb:\n" +
-                "   Fredag den 7. februar 2014: 1 stk middag\n" +
-                "   Lørdag den 8. februar 2014: 1 stk middag\n" +
-                "   Søndag den 9. februar 2014: 1 stk middag\n" +
-                "   Mandag den 10. februar 2014: 1 stk middag\n" +
-                "   Tirsdag den 11. februar 2014: 1 stk middag\n" +
-                "   Onsdag den 12. februar 2014: 1 stk middag\n" +
-                "   Torsdag den 13. februar 2014: 1 stk middag\n" +
-                "   Fredag den 14. februar 2014: 1 stk middag\n" +
-                "   Lørdag den 15. februar 2014: 1 stk middag\n" +
-                "   Søndag den 16. februar 2014: 1 stk middag\n" +
-                "   Mandag den 17. februar 2014: 1 stk middag\n" +
-                "   Tirsdag den 18. februar 2014: 1 stk middag\n" +
-                "   Onsdag den 19. februar 2014: 1 stk middag\n" +
-                "   Torsdag den 20. februar 2014: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals("Dosering fra d. 7. feb. 2014 kl. 7:19 - gentages hver 14. dag:\n" +
+                "Dag 1: 1 stk middag\n" +
+                "Dag 2: 1 stk middag\n" +
+                "Dag 3: 1 stk middag\n" +
+                "Dag 4: 1 stk middag\n" +
+                "Dag 5: 1 stk middag\n" +
+                "Dag 6: 1 stk middag\n" +
+                "Dag 7: 1 stk middag\n" +
+                "Dag 8: 1 stk middag\n" +
+                "Dag 9: 1 stk middag\n" +
+                "Dag 10: 1 stk middag\n" +
+                "Dag 11: 1 stk middag\n" +
+                "Dag 12: 1 stk middag\n" +
+                "Dag 13: 1 stk middag\n" +
+                "Dag 14: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertEquals("1 stk middag daglig", DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertEquals(
                 1.0,
@@ -260,11 +254,10 @@ public class NumberOfWholeWeeksConverterTest extends DosisTilTekstWrapperTestBas
                         )
                 ));
 
-        Assert.assertEquals("Doseringsforløbet starter fredag den 7. februar 2014 kl. 07:19, forløbet gentages efter 42 dage:\n" +
-                "   Doseringsforløb:\n" +
-                "   Fredag den 7. februar 2014: 1 stk middag\n" +
-                "   Lørdag den 8. februar 2014: 1 stk middag\n" +
-                "   Søndag den 9. februar 2014: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals("Dosering fra d. 7. feb. 2014 kl. 7:19 - gentages hver 42. dag:\n" +
+                "Dag 1: 1 stk middag\n" +
+                "Dag 2: 1 stk middag\n" +
+                "Dag 3: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertEquals("1 stk middag daglig i 3 dage, herefter 39 dages pause", DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertEquals(
                 0.071428571,
@@ -286,12 +279,10 @@ public class NumberOfWholeWeeksConverterTest extends DosisTilTekstWrapperTestBas
                         )
                 ));
 
-        Assert.assertEquals("Doseringsforløbet starter fredag den 7. februar 2014 kl. 07:19, forløbet gentages efter 42 dage.\n" +
-                "Bemærk at doseringen har et komplekst forløb:\n" +
-                "   Doseringsforløb:\n" +
-                "   Fredag den 7. februar 2014: 1 stk middag\n" +
-                "   Søndag den 9. februar 2014: 1 stk middag\n" +
-                "   Tirsdag den 11. februar 2014: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals("Dosering fra d. 7. feb. 2014 kl. 7:19 - gentages hver 42. dag:\n" +
+                "Dag 1: 1 stk middag\n" +
+                "Dag 3: 1 stk middag\n" +
+                "Dag 5: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertEquals(
                 0.071428571,
@@ -313,12 +304,10 @@ public class NumberOfWholeWeeksConverterTest extends DosisTilTekstWrapperTestBas
                         )
                 ));
 
-        Assert.assertEquals("Doseringsforløbet starter fredag den 7. februar 2014 kl. 07:19, forløbet gentages efter 42 dage.\n" +
-                "Bemærk at doseringen har et komplekst forløb:\n" +
-                "   Doseringsforløb:\n" +
-                "   Lørdag den 8. februar 2014: 1 stk middag\n" +
-                "   Mandag den 10. februar 2014: 1 stk middag\n" +
-                "   Onsdag den 12. februar 2014: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals("Dosering fra d. 7. feb. 2014 kl. 7:19 - gentages hver 42. dag:\n" +
+                "Dag 2: 1 stk middag\n" +
+                "Dag 4: 1 stk middag\n" +
+                "Dag 6: 1 stk middag", DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertEquals(
                 0.071428571,

@@ -1,11 +1,11 @@
 package dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects;
 
-public class DosageProposalResultDTO {
+public class DosageProposalXmlDTO {
     private String _xml;
     private String _shortDosageTranslation;
     private String _longDosageTranslation;
 
-    public DosageProposalResultDTO() {
+    public DosageProposalXmlDTO() {
     }
 
     public String get_xml() {

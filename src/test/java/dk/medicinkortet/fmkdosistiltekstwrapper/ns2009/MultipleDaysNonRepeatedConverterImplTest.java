@@ -36,13 +36,11 @@ public class MultipleDaysNonRepeatedConverterImplTest  extends DosisTilTekstWrap
 				"DefaultLongTextConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011 og ophører efter det angivne forløb.\n"+
-				"Bemærk at doseringen har et komplekst forløb:\n" +
-				"   Doseringsforløb:\n"+
-				"   Lørdag den 1. januar 2011: 1 tablet morgen\n"+
-				"   Mandag den 3. januar 2011: 1 tablet morgen.\n"+
-				"   Bemærk: ved måltid",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "Lørdag d. 1. jan. 2011: 1 tablet morgen\n" +
+                        "Mandag d. 3. jan. 2011: 1 tablet morgen\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		
 		Assert.assertEquals(
 				2.0/3.0, 

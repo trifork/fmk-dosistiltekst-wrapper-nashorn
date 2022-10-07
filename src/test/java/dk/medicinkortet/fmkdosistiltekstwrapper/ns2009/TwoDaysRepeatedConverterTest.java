@@ -48,10 +48,9 @@ public class TwoDaysRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				"TwoDaysRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, forløbet gentages hver 2. dag, og ophører søndag den 30. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   Dag 1: 1 stk 2 gange.\n"+
-				"   Bemærk: ved måltid",
+				"Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+						"1 stk 2 gange - hver 2. dag\n" +
+						"Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"RepeatedConverterImpl", 
@@ -81,10 +80,9 @@ public class TwoDaysRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				"TwoDaysRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, forløbet gentages hver 2. dag, og ophører søndag den 30. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   Dag 2: 1 stk 2 gange.\n"+
-				"   Bemærk: ved måltid",
+				"Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+						"Dag 2: 1 stk 2 gange - hver 2. dag\n" +
+						"Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"RepeatedConverterImpl", 
@@ -107,31 +105,26 @@ public class TwoDaysRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				StructureWrapper.makeStructure(
 					2, "ved måltid", DateOrDateTimeWrapper.makeDate("2011-01-01"), DateOrDateTimeWrapper.makeDate("2011-01-30"), 
 					DayWrapper.makeDay(
-						1, 
-						PlainDoseWrapper.makeDose(new BigDecimal(1))),
-					DayWrapper.makeDay(
-						2, 
-						PlainDoseWrapper.makeDose(new BigDecimal(1)), 
-						PlainDoseWrapper.makeDose(new BigDecimal(1))))));
+							1,
+							PlainDoseWrapper.makeDose(new BigDecimal(1))))));
 		Assert.assertEquals(
-				"TwoDaysRepeatedConverterImpl", 
+				"TwoDaysRepeatedConverterImpl",
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, forløbet gentages hver 2. dag, og ophører søndag den 30. januar 2011.\n"+
-				"Bemærk at doseringen varierer:\n"+
-				"   Doseringsforløb:\n"+
-				"   Dag 1: 1 stk\n"+
-				"   Dag 2: 1 stk 2 gange.\n"+
-				"   Bemærk: ved måltid",
+				"Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+						"1 stk hver 2. dag\n" +
+						"Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
-		Assert.assertNull(
+		Assert.assertEquals(
+				"RepeatedConverterImpl",
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
-		Assert.assertNull(
+		Assert.assertEquals("1 stk hver 2. dag.\n" +
+						"Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
-				1.5, 
+				0.5,
 				DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().doubleValue(),
-				0.000000001); 							
+				0.000000001);
 		Assert.assertEquals(DosageType.Temporary, DosisTilTekstWrapper.getDosageType(dosage));
 	}
 

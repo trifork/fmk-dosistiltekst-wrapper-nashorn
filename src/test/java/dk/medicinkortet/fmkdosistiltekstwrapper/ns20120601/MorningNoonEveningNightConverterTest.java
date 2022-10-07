@@ -53,11 +53,10 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   1 tablet morgen + 2 tabletter aften.\n"+
-			"   Bemærk: ved måltid",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "1 tablet morgen og 2 tabletter aften - hver dag\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 			"MorningNoonEveningNightConverterImpl", 
 			DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -86,11 +85,10 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   2 tabletter morgen + 2 tabletter aften.\n"+
-			"   Bemærk: ved måltid",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "2 tabletter morgen og 2 tabletter aften - hver dag\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 			"MorningNoonEveningNightConverterImpl", 
 			DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -121,11 +119,10 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   1,5 tabletter morgen + 2,5 tabletter middag + 3,5 tabletter aften + 4,5 tabletter nat.\n"+
-			"   Bemærk: ved måltid og hvornår man ellers skulle føle trang",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "1,5 tabletter morgen, 2,5 tabletter middag, 3,5 tabletter aften og 4,5 tabletter nat - hver dag\n" +
+                        "Bemærk: ved måltid og hvornår man ellers skulle føle trang",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
@@ -150,11 +147,10 @@ public class MorningNoonEveningNightConverterTest extends DosisTilTekstWrapperTe
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   1 mg morgen efter behov + 2 mg aften efter behov.\n"+
-			"   Bemærk: ved måltid",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "1 mg morgen efter behov og 2 mg aften efter behov\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue());
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));
 	}

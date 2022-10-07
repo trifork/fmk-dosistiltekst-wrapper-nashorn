@@ -48,19 +48,17 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 		Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", shortText);
 		
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
-			"   Doseringsforløb:\n"+
-			"   4 stk 2 gange daglig.\n" +
-			"   Bemærk: mod smerter", 
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "4 stk 2 gange hver dag\n" +
+                        "Bemærk: mod smerter",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		
 		DosageTranslationCombined combined = DosisTilTekstWrapper.convertCombined(dosage);
-		Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", combined.getCombinedTranslation().getShortText());
-		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
-				"   Doseringsforløb:\n"+
-				"   4 stk 2 gange daglig.\n" +
-				"   Bemærk: mod smerter", combined.getCombinedTranslation().getLongText());
+        Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", combined.getCombinedTranslation().getShortText());
+        Assert.assertEquals(
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "4 stk 2 gange hver dag\n" +
+                        "Bemærk: mod smerter", combined.getCombinedTranslation().getLongText());
 	}
 	
 	@Test
@@ -82,19 +80,17 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 		Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", shortText);
 		
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
-			"   Doseringsforløb:\n"+
-			"   4 stk 2 gange daglig.\n" +
-			"   Bemærk: mod smerter", 
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "4 stk 2 gange hver dag\n" +
+                        "Bemærk: mod smerter",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		
 		DosageTranslationCombined combined = DosisTilTekstWrapper.convertCombined(dosage);
-		Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", combined.getCombinedTranslation().getShortText());
-		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
-				"   Doseringsforløb:\n"+
-				"   4 stk 2 gange daglig.\n" +
-				"   Bemærk: mod smerter", combined.getCombinedTranslation().getLongText());
+        Assert.assertEquals("4 stk 2 gange daglig.\nBemærk: mod smerter", combined.getCombinedTranslation().getShortText());
+        Assert.assertEquals(
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "4 stk 2 gange hver dag\n" +
+                        "Bemærk: mod smerter", combined.getCombinedTranslation().getLongText());
 	}
 
 	@Test
@@ -110,11 +106,10 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 								PlainDoseWrapper.makeDose(new BigDecimal(4)), 
 								PlainDoseWrapper.makeDose(new BigDecimal(4), true)))));
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
-			"   Doseringsforløb:\n"+
-			"   4 stk + 4 stk efter behov.\n" +
-			"   Bemærk: mod smerter",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "4 stk og 4 stk efter behov hver dag\n" +
+                        "Bemærk: mod smerter",
+                DosisTilTekstWrapper.convertLongText(dosage));
 	}
 
 	@Test
@@ -131,13 +126,11 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 						DayWrapper.makeDay(2, 
 							PlainDoseWrapper.makeDose(new BigDecimal(2))))));
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011, forløbet gentages hver 2. dag, og ophører fredag den 14. januar 2011.\n"+
-			"Bemærk at doseringen varierer:\n"+
-			"   Doseringsforløb:\n"+
-			"   Dag 1: 1 stk\n"+
-			"   Dag 2: 2 stk.\n"+
-			"   Bemærk: mod smerter",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 14. jan. 2011 - gentages hver 2. dag:\n" +
+                        "Dag 1: 1 stk\n" +
+                        "Dag 2: 2 stk\n" +
+                        "Bemærk: mod smerter",
+                DosisTilTekstWrapper.convertLongText(dosage));
 	}
 
 	@Test
@@ -155,11 +148,10 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 						EveningDoseWrapper.makeDose(new BigDecimal(1)), 
 						NightDoseWrapper.makeDose(new BigDecimal(1)))))); 
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører fredag den 14. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   1 stk morgen + 1 stk middag + 1 stk aften + 1 stk nat.\n" +
-			"   Bemærk: mod smerter",				
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 14. jan. 2011:\n" +
+                        "1 stk morgen, 1 stk middag, 1 stk aften og 1 stk nat - hver dag\n" +
+                        "Bemærk: mod smerter",
+                DosisTilTekstWrapper.convertLongText(dosage));
 	}
 	
 	@Test
@@ -188,11 +180,10 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 			DosageWrapper.makeDosage(FreeTextWrapper.makeFreeText(DateOrDateTimeWrapper.makeDate("2011-01-01"), null, "Bare tag rigeligt"));
 		
 		DosageTranslationCombined combined = DosisTilTekstWrapper.convertCombined(dosage);
-		Assert.assertEquals("Bare tag rigeligt", combined.getCombinedTranslation().getShortText());
-		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011.\n"+
-				"   Doseringsforløb:\n"+
-				"   Bare tag rigeligt", combined.getCombinedTranslation().getLongText());
+        Assert.assertEquals("Bare tag rigeligt", combined.getCombinedTranslation().getShortText());
+        Assert.assertEquals(
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "\"Bare tag rigeligt\"", combined.getCombinedTranslation().getLongText());
 	}
 	
 	@Test
@@ -207,14 +198,13 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 						DayWrapper.makeDay(7, PlainDoseWrapper.makeDose(new BigDecimal(1.0))))));
 		Assert.assertEquals("WeeklyRepeatedConverterImpl", DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter fredag den 8. juni 2012, forløbet gentages hver uge, og ophører mandag den 31. december 2012.\n"
-						+ "Bemærk at doseringen har et komplekst forløb:\n" + "   Doseringsforløb:\n"
-						+ "   Tirsdag: 1 stk\n"
-						+ "   Torsdag: 1 stk\n"
-						+ "   Fredag: 1 stk\n"
-						+ "   Søndag: 1 stk.\n"
-						+ "   Bemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 8. juni 2012 til d. 31. dec. 2012 - gentages hver uge:\n" +
+                        "Tirsdag: 1 stk\n" +
+                        "Torsdag: 1 stk\n" +
+                        "Fredag: 1 stk\n" +
+                        "Søndag: 1 stk\n" +
+                        "Bemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"1 stk tirsdag, torsdag, fredag og søndag hver uge.\nBemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
 				DosisTilTekstWrapper.convertShortText(dosage, 300));
@@ -224,14 +214,13 @@ public class DosageWrapperTest extends DosisTilTekstWrapperTestBase {
 		Assert.assertNull(combined.getCombinedTranslation().getShortText());
 		Assert.assertNull(combined.getPeriodTranslations().get(0).getShortText());
 		Assert.assertEquals(
-				"Doseringsforløbet starter fredag den 8. juni 2012, forløbet gentages hver uge, og ophører mandag den 31. december 2012.\n"
-						+ "Bemærk at doseringen har et komplekst forløb:\n" + "   Doseringsforløb:\n"
-						+ "   Tirsdag: 1 stk\n"
-						+ "   Torsdag: 1 stk\n"
-						+ "   Fredag: 1 stk\n"
-						+ "   Søndag: 1 stk.\n"
-						+ "   Bemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
-				combined.getCombinedTranslation().getLongText());
+                "Dosering fra d. 8. juni 2012 til d. 31. dec. 2012 - gentages hver uge:\n" +
+                        "Tirsdag: 1 stk\n" +
+                        "Torsdag: 1 stk\n" +
+                        "Fredag: 1 stk\n" +
+                        "Søndag: 1 stk\n" +
+                        "Bemærk: en meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget, meget laaaang supplerende tekst",
+                combined.getCombinedTranslation().getLongText());
 		
 		
 	}

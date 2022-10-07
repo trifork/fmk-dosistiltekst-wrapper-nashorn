@@ -49,10 +49,9 @@ public class LongTextComplexConverterTest extends DosisTilTekstWrapperTestBase {
 						1, 
 						MorningDoseWrapper.makeDose(new BigDecimal(1), false)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter onsdag den 18. april 2012 og gentages hver dag:\n"+
-				"   Doseringsforløb:\n"+
-				"   1 tablet morgen", 
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 18. apr. 2012:\n" +
+                        "1 tablet hver morgen",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals("1 tablet morgen", DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 				1, 
@@ -72,10 +71,9 @@ public class LongTextComplexConverterTest extends DosisTilTekstWrapperTestBase {
 						0, 
 						MorningDoseWrapper.makeDose(new BigDecimal(1), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter onsdag den 18. april 2012:\n"+
-				"   Doseringsforløb:\n"+
-				"   Efter behov: 1 tablet morgen efter behov", 
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 18. apr. 2012:\n" +
+                        "1 tablet morgen efter behov",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals("1 tablet morgen efter behov", DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue());
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));
@@ -98,12 +96,10 @@ public class LongTextComplexConverterTest extends DosisTilTekstWrapperTestBase {
                                         2,
                                         TimedDoseWrapper.makeDose(new LocalTime(10,2,1), new BigDecimal(3), false)))));
         Assert.assertEquals(
-                "Doseringsforløbet starter onsdag den 18. april 2012 og ophører efter det angivne forløb.\n" +
-                        "Bemærk at doseringen varierer og har et komplekst forløb:\n" +
-                        "   Doseringsforløb:\n" +
-                        "   Dag ikke angivet: 1 tablet kl. 10:00\n" +
-                        "   Onsdag den 18. april 2012: 2 tabletter kl. 10:01\n" +
-                        "   Torsdag den 19. april 2012: 3 tabletter kl. 10:02:01",
+                "Dosering fra d. 18. apr. 2012:\n" +
+                        "Dag ikke angivet: 1 tablet kl. 10:00\n" +
+                        "Onsdag d. 18. apr. 2012: 2 tabletter kl. 10:01\n" +
+                        "Torsdag d. 19. apr. 2012: 3 tabletter kl. 10:02:01",
                 DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue());
@@ -127,9 +123,8 @@ public class LongTextComplexConverterTest extends DosisTilTekstWrapperTestBase {
                             PlainDoseWrapper.makeDose(BigDecimal.valueOf(2))
                 		))));
         Assert.assertEquals(
-                "Doseringsforløbet starter onsdag den 18. april 2012 og ophører efter det angivne forløb:\n" +
-                        "   Doseringsforløb:\n" +
-                        "   Onsdag den 18. april 2012: 1 tablet kl. 10:00 + 2 tabletter 4 gange daglig",
+                "Dosering kun d. 18. apr. 2012:\n" +
+                        "1 tablet kl. 10:00 og 2 tabletter 4 gange",
                 DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertEquals(9, DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().intValue());
@@ -150,9 +145,8 @@ public class LongTextComplexConverterTest extends DosisTilTekstWrapperTestBase {
                             PlainDoseWrapper.makeDose(BigDecimal.valueOf(2), false)
                 		))));
         Assert.assertEquals(
-                "Doseringsforløbet starter onsdag den 18. april 2012 og ophører efter det angivne forløb:\n" +
-                        "   Doseringsforløb:\n" +
-                        "   Onsdag den 18. april 2012: 2 tabletter efter behov + 2 tabletter 2 gange daglig",
+                "Dosering kun d. 18. apr. 2012:\n" +
+                        "2 tabletter efter behov og 2 tabletter 2 gange",
                 DosisTilTekstWrapper.convertLongText(dosage));
         Assert.assertNull(DosisTilTekstWrapper.convertShortText(dosage));
         Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue());

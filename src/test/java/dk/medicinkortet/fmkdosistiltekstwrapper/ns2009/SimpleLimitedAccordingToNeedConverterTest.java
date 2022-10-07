@@ -46,11 +46,10 @@ public class SimpleLimitedAccordingToNeedConverterTest extends DosisTilTekstWrap
 							PlainDoseWrapper.makeDose(new BigDecimal(1), true),
 							PlainDoseWrapper.makeDose(new BigDecimal(1), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n"+
-				"   Doseringsforløb:\n"+
-				"   1 pust efter behov højst 3 gange daglig.\n"+
-				"   Bemærk: ved anfald", // TOOD order
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "1 pust efter behov, højst 3 gange dagligt\n" +
+                        "Bemærk: ved anfald", // TOOD order
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleLimitedAccordingToNeedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -72,17 +71,16 @@ public class SimpleLimitedAccordingToNeedConverterTest extends DosisTilTekstWrap
 						DayWrapper.makeDay(1,
 							PlainDoseWrapper.makeDose(new BigDecimal(1), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører tirsdag den 11. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   1 pust efter behov højst 1 gang daglig.\n"+
-				"   Bemærk: ved anfald", 
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "1 pust efter behov, højst 1 gang dagligt\n" +
+                        "Bemærk: ved anfald",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleLimitedAccordingToNeedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"1 pust efter behov, højst 1 gang daglig.\nBemærk: ved anfald", 
-				DosisTilTekstWrapper.convertShortText(dosage));
+                "1 pust efter behov, højst 1 gang dagligt.\nBemærk: ved anfald",
+                DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));
 	}
@@ -98,16 +96,15 @@ public class SimpleLimitedAccordingToNeedConverterTest extends DosisTilTekstWrap
 						DayWrapper.makeDay(1,
 							PlainDoseWrapper.makeDose(new BigDecimal(1), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter fredag den 1. juni 2012 og gentages hver dag:\n"+
-				"   Doseringsforløb:\n"+
-				"   1 stk efter behov højst 1 gang daglig",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. juni 2012:\n" +
+                        "1 stk efter behov, højst 1 gang dagligt",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleLimitedAccordingToNeedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"1 stk efter behov, højst 1 gang daglig", 
-				DosisTilTekstWrapper.convertShortText(dosage));
+                "1 stk efter behov, højst 1 gang dagligt",
+                DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));
 	}
@@ -137,14 +134,12 @@ public class SimpleLimitedAccordingToNeedConverterTest extends DosisTilTekstWrap
 							PlainDoseWrapper.makeDose(new BigDecimal(1)), 
 							PlainDoseWrapper.makeDose(new BigDecimal(1))))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter fredag den 1. juni 2012 og ophører efter det angivne forløb.\n"+
-				"Bemærk at doseringen varierer:\n"+
-				"   Doseringsforløb:\n"+
-				"   Fredag den 1. juni 2012: 1 stk 4 gange\n"+
-				"   Lørdag den 2. juni 2012: 1 stk 4 gange\n"+
-				"   Søndag den 3. juni 2012: 1 stk 2 gange\n"+
-				"   Mandag den 4. juni 2012: 1 stk 2 gange",
-				 DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. juni 2012:\n" +
+                        "Fredag d. 1. juni 2012: 1 stk 4 gange\n" +
+                        "Lørdag d. 2. juni 2012: 1 stk 4 gange\n" +
+                        "Søndag d. 3. juni 2012: 1 stk 2 gange\n" +
+                        "Mandag d. 4. juni 2012: 1 stk 2 gange",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(null,
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
