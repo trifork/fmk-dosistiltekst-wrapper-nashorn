@@ -48,10 +48,9 @@ public class ValidatorTest extends DosisTilTekstWrapperTestBase {
 				1, 
 				s.getDays().get(0).getNumberOfDoses());
 		Assert.assertEquals(
-				"Doseringsforløbet starter fredag den 13. april 2012 kl. 20:06 og gentages hver dag:\n"+
-				"   Doseringsforløb:\n"+
-				"   2 stk morgen",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 13. apr. 2012 kl. 20:06:\n" +
+                        "2 stk hver morgen",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"MorningNoonEveningNightConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -80,16 +79,15 @@ public class ValidatorTest extends DosisTilTekstWrapperTestBase {
 				1, 
 				s.getDays().get(0).getAccordingToNeedDoses().size());
 		Assert.assertEquals(
-				"Doseringsforløbet starter fredag den 13. april 2012 kl. 20:06 og gentages hver dag:\n"+
-				"   Doseringsforløb:\n"+
-				"   2 stk efter behov højst 1 gang daglig",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 13. apr. 2012 kl. 20:06:\n" +
+                        "2 stk efter behov, højst 1 gang dagligt",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleLimitedAccordingToNeedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"2 stk efter behov, højst 1 gang daglig", 
-				DosisTilTekstWrapper.convertShortText(dosage));
+                "2 stk efter behov, højst 1 gang dagligt",
+                DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue());
 	}	
 

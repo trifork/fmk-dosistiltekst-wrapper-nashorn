@@ -26,11 +26,10 @@ public class RepeatedEyeOrEarConverterTest extends DosisTilTekstWrapperTestBase 
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   2 dråber 2 gange daglig.\n"+
-			"   Bemærk: 1 i hvert øje",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "2 dråber 2 gange hver dag\n" +
+                        "Bemærk: 1 i hvert øje",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 			"RepeatedEyeOrEarConverterImpl", 
 			DosisTilTekstWrapper.getShortTextConverterClassName(dosage));

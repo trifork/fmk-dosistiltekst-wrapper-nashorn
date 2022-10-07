@@ -4,9 +4,7 @@ import dk.medicinkortet.fmkdosistiltekstwrapper.*;
 import dk.medicinkortet.fmkdosistiltekstwrapper.nashorn.DosisTilTekstWrapper;
 import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.DTOHelper;
 import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.requestobjects.*;
-import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects.DosageProposalResultDTO;
-import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects.combinedconversion.CombinedConversionDTO;
-import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects.combinedconversion.DailyDosisDTO;
+import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects.DosageProposalXmlDTO;
 import dk.medicinkortet.fmkdosistiltekstwrapper.vowrapper.DosageWrapper;
 
 import java.util.Date;
@@ -42,7 +40,7 @@ public class DosisTilTekstWrapperNode {
         if (responseBody == null || responseBody.isEmpty())
             return null;
 
-        var responseDTO = DTOHelper.convertJsonToDTO(responseBody, DosageProposalResultDTO.class, "getDosageProposalResult");
+        var responseDTO = DTOHelper.convertJsonToDTO(responseBody, DosageProposalXmlDTO.class, "getDosageProposalResult");
         return new DosageProposalResult(responseDTO.get_xml(), responseDTO.get_shortDosageTranslation(), responseDTO.get_longDosageTranslation());
     }
 
@@ -57,12 +55,11 @@ public class DosisTilTekstWrapperNode {
 
         var responseBody = RequestHelper.post(baseUrl + endpoint, inputJson, "convertCombined");
 
-        if (responseBody == null) {
+        if (responseBody == null || responseBody.isEmpty()) {
             return new DosageTranslationCombined(new DosageTranslation(null, null, new DailyDosis()), new LinkedList<>());
         }
 
-        var responseDTO = DTOHelper.convertJsonToDTO(responseBody, CombinedConversionDTO.class, "convertCombined");
-        return DTOHelper.convertDTOToDosageTranslationCombined((responseDTO));
+        return DTOHelper.convertJsonToDTO(responseBody, DosageTranslationCombined.class, "convertCombined");
     }
 
     public static String convertLongText(DosageWrapper dosage, DosisTilTekstWrapper.TextOptions options) {
@@ -170,7 +167,6 @@ public class DosisTilTekstWrapperNode {
 
         var responseBody = RequestHelper.post(baseUrl + endpoint, inputJson, "calculateDailyDosis");
 
-        var resultDTO = DTOHelper.convertJsonToDTO(responseBody, DailyDosisDTO.class, "calculateDailyDosis");
-        return DTOHelper.convertDTOToDailyDosis(resultDTO);
+        return DTOHelper.convertJsonToDTO(responseBody, DailyDosis.class, "calculateDailyDosis");
     }
 }

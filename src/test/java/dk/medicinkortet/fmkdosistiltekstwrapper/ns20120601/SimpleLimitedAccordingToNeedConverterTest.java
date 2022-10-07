@@ -48,15 +48,14 @@ public class SimpleLimitedAccordingToNeedConverterTest {
 						DayWrapper.makeDay(1,
 							PlainDoseWrapper.makeDose(new BigDecimal(1), true)))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter onsdag den 1. januar 2014, gentages hver dag, og ophører onsdag den 31. december 2014:\n"+
-				"   Doseringsforløb:\n"+
-				"   1 påsmøring efter behov højst 1 gang daglig",
-				DosisTilTekstWrapper.convertLongText(dosage));
-		Assert.assertEquals(
-				"SimpleLimitedAccordingToNeedConverterImpl", 
-				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
-		Assert.assertEquals("1 påsmøring efter behov, højst 1 gang daglig", DosisTilTekstWrapper.convertShortText(dosage));
-		Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
+                "Dosering fra d. 1. jan. 2014 til d. 31. dec. 2014:\n" +
+                        "1 påsmøring efter behov, højst 1 gang dagligt",
+                DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertEquals(
+                "SimpleLimitedAccordingToNeedConverterImpl",
+                DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
+        Assert.assertEquals("1 påsmøring efter behov, højst 1 gang dagligt", DosisTilTekstWrapper.convertShortText(dosage));
+        Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));
 	}
 	

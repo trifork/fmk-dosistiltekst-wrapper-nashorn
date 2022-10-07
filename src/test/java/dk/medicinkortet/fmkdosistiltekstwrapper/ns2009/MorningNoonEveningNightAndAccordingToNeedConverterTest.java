@@ -48,10 +48,9 @@ public class MorningNoonEveningNightAndAccordingToNeedConverterTest extends Dosi
 						NightDoseWrapper.makeDose(new BigDecimal(2)), 
 						PlainDoseWrapper.makeDose(new BigDecimal(2), true)))));		
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   2 stk morgen + 2 stk middag + 2 stk aften + 2 stk nat + 2 stk efter behov",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "2 stk efter behov, 2 stk morgen, 2 stk middag, 2 stk aften og 2 stk nat - hver dag",
+                DosisTilTekstWrapper.convertLongText(dosage));
 //		Assert.assertEquals(
 //			"MorningNoonEveningNightAndAccordingToNeedConverterImpl", 
 //			DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -77,16 +76,15 @@ public class MorningNoonEveningNightAndAccordingToNeedConverterTest extends Dosi
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører tirsdag den 11. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   2 stk efter behov + 2 stk morgen",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "2 stk efter behov og 2 stk morgen - hver dag",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"MorningNoonEveningNightAndAccordingToNeedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"2 stk morgen, samt 2 stk efter behov, højst 1 gang daglig", 
-				DosisTilTekstWrapper.convertShortText(dosage));
+                "2 stk morgen, samt 2 stk efter behov, højst 1 gang dagligt",
+                DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
 		Assert.assertEquals(DosageType.Combined, DosisTilTekstWrapper.getDosageType(dosage));
 	}
@@ -108,10 +106,9 @@ public class MorningNoonEveningNightAndAccordingToNeedConverterTest extends Dosi
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører tirsdag den 11. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-	   			"   1-2 stk morgen + 1-1 stk middag + 1-2 stk aften + 1-2 stk efter behov",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "1-2 stk efter behov, 1-2 stk morgen, 1-1 stk middag og 1-2 stk aften - hver dag",
+                DosisTilTekstWrapper.convertLongText(dosage));
 //		Assert.assertEquals(
 //				"MorningNoonEveningNightAndAccordingToNeedConverterImpl", 
 //				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -140,10 +137,9 @@ public class MorningNoonEveningNightAndAccordingToNeedConverterTest extends Dosi
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører tirsdag den 11. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-	   			"   1-2 stk morgen + 1-1 stk middag + 1-2 stk aften + 1-2 stk efter behov + 1-2 stk efter behov",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 11. jan. 2011:\n" +
+                        "1-2 stk efter behov, 1-2 stk efter behov, 1-2 stk morgen, 1-1 stk middag og 1-2 stk aften - hver dag",
+                DosisTilTekstWrapper.convertLongText(dosage));
 //		Assert.assertEquals(
 //				"MorningNoonEveningNightAndAccordingToNeedConverterImpl", 
 //				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));

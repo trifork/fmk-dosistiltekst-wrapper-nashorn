@@ -48,8 +48,8 @@ public class LongTextConverterTest extends DosisTilTekstWrapperTestBase {
 	public void testFreeText() {
 		DosageWrapper dosage = DosageWrapper.makeDosage(
 			FreeTextWrapper.makeFreeText(null, null, "Dosages in free text should always be avoided"));
-		Assert.assertEquals("Dosages in free text should always be avoided", DosisTilTekstWrapper.convertLongText(dosage));
-		Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
+		Assert.assertEquals("\"Dosages in free text should always be avoided\"", DosisTilTekstWrapper.convertLongText(dosage));
+        Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
 		Assert.assertEquals(DosageType.Unspecified, DosisTilTekstWrapper.getDosageType(dosage));
 	}
 
@@ -66,11 +66,10 @@ public class LongTextConverterTest extends DosisTilTekstWrapperTestBase {
 							MorningDoseWrapper.makeDose(new BigDecimal(1)), 
 							EveningDoseWrapper.makeDose(new BigDecimal(2))))));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   1 ml morgen + 2 ml aften.\n"+
-				"   Bemærk: ved måltid",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "1 ml morgen og 2 ml aften - hver dag\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				3.0, 
 				DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().doubleValue(),
@@ -90,11 +89,10 @@ public class LongTextConverterTest extends DosisTilTekstWrapperTestBase {
 							1, 
 							TimedDoseWrapper.makeDose(new LocalTime(13,30,0), new BigDecimal(1.0), false)))));
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011 og ophører efter det angivne forløb:\n"+
-			"   Doseringsforløb:\n"+
-			"   Lørdag den 1. januar 2011: 1 ml kl. 13:30:00.\n"+
-			"   Bemærk: før behandling",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering kun d. 1. jan. 2011:\n" +
+                        "1 ml kl. 13:30\n" +
+                        "Bemærk: før behandling",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				1.0, 
 				DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().doubleValue(),
@@ -115,11 +113,10 @@ public class LongTextConverterTest extends DosisTilTekstWrapperTestBase {
 							TimedDoseWrapper.makeDose(new LocalTime(13,30,0), new BigDecimal(1.0), false),
 							TimedDoseWrapper.makeDose(new LocalTime(14,30,0), new BigDecimal(2.0), false)))));
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011 og ophører efter det angivne forløb:\n"+
-			"   Doseringsforløb:\n"+
-			"   Lørdag den 1. januar 2011: 1 ml kl. 13:30:00 + 2 ml kl. 14:30:00.\n"+
-			"   Bemærk: før behandling",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering kun d. 1. jan. 2011:\n" +
+                        "1 ml kl. 13:30 og 2 ml kl. 14:30\n" +
+                        "Bemærk: før behandling",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				3.0, 
 				DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().doubleValue(),

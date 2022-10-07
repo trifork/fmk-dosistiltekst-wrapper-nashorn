@@ -60,15 +60,13 @@ public class WeeklyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				"WeeklyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter fredag den 8. juni 2012, forløbet gentages hver uge, og ophører mandag den 31. december 2012.\n"+
-				"Bemærk at doseringen har et komplekst forløb:\n"+
-				"   Doseringsforløb:\n"+
-				"   Tirsdag: 1 stk 2 gange\n"+
-				"   Torsdag: 1 stk 2 gange\n"+
-				"   Fredag: 1 stk 2 gange\n"+
-				"   Søndag: 1 stk 2 gange.\n"+
-				"   Bemærk: ved måltid",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 8. juni 2012 til d. 31. dec. 2012 - gentages hver uge:\n" +
+                        "Tirsdag: 1 stk 2 gange\n" +
+                        "Torsdag: 1 stk 2 gange\n" +
+                        "Fredag: 1 stk 2 gange\n" +
+                        "Søndag: 1 stk 2 gange\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 //		Assert.assertEquals(
 //				dk.medicinkortet.fmkdosistiltekstwrapper.shorttextconverterimpl."WeeklyRepeatedConverterImpl", 
 //				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -103,15 +101,13 @@ public class WeeklyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				"WeeklyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter fredag den 8. juni 2012, forløbet gentages hver uge, og ophører mandag den 31. december 2012.\n"+
-				"Bemærk at doseringen har et komplekst forløb:\n"+
-				"   Doseringsforløb:\n"+
-				"   Tirsdag: 1 stk\n"+
-				"   Torsdag: 1 stk\n"+
-				"   Fredag: 1 stk\n"+
-				"   Søndag: 1 stk.\n"+
-				"   Bemærk: ved måltid",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 8. juni 2012 til d. 31. dec. 2012 - gentages hver uge:\n" +
+                        "Tirsdag: 1 stk\n" +
+                        "Torsdag: 1 stk\n" +
+                        "Fredag: 1 stk\n" +
+                        "Søndag: 1 stk\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				4/7., 
 				DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().doubleValue(),

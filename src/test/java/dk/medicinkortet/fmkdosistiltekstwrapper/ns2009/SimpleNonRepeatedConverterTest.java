@@ -44,11 +44,10 @@ public class SimpleNonRepeatedConverterTest extends DosisTilTekstWrapperTestBase
 						0, 
 						PlainDoseWrapper.makeDose(new BigDecimal(1))))));				
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011, og ophører søndag den 30. januar 2011:\n"+
-			"   Doseringsforløb:\n" +	
-			"   Dag ikke angivet: 1 plaster.\n"+
-			"   Bemærk: 5 timer før virkning ønskes",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "1 plaster\n" +
+                        "Bemærk: 5 timer før virkning ønskes",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 			"SimpleNonRepeatedConverterImpl", 
 			DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -71,11 +70,10 @@ public class SimpleNonRepeatedConverterTest extends DosisTilTekstWrapperTestBase
 						PlainDoseWrapper.makeDose(new BigDecimal(1)), 
 						PlainDoseWrapper.makeDose(new BigDecimal(1))))));				
 		Assert.assertEquals(
-			"Doseringsforløbet starter lørdag den 1. januar 2011 og ophører efter det angivne forløb:\n"+
-			"   Doseringsforløb:\n"+
-			"   Lørdag den 1. januar 2011: 1 kapsel 2 gange.\n"+
-			"   Bemærk: dagen før indlæggelse",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering kun d. 1. jan. 2011:\n" +
+                        "1 kapsel 2 gange\n" +
+                        "Bemærk: dagen før indlæggelse",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"LimitedNumberOfDaysConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -97,17 +95,16 @@ public class SimpleNonRepeatedConverterTest extends DosisTilTekstWrapperTestBase
 						0, 
 						TimedDoseWrapper.makeDose(new LocalTime(7,30), new BigDecimal(1), false)))));
 		Assert.assertEquals(
-			"Doseringen foretages kun lørdag den 1. januar 2011:\n"+
-			"   Doseringsforløb:\n" + 
-			"   Dag ikke angivet: 1 stk kl. 07:30.\n"+
-			"   Bemærk: før indlæggelse",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering kun d. 1. jan. 2011:\n" +
+                        "1 stk kl. 7:30\n" +
+                        "Bemærk: før indlæggelse",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"SimpleNonRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"1 stk kl. 07:30.\nBemærk: før indlæggelse", 
-			DosisTilTekstWrapper.convertShortText(dosage, 100));
+                "1 stk kl. 7:30.\nBemærk: før indlæggelse",
+                DosisTilTekstWrapper.convertShortText(dosage, 100));
 		Assert.assertTrue(DosisTilTekstWrapper.calculateDailyDosis(dosage).isNone());
 		Assert.assertEquals(DosageType.Temporary, DosisTilTekstWrapper.getDosageType(dosage));
 	}	
@@ -131,8 +128,8 @@ public class SimpleNonRepeatedConverterTest extends DosisTilTekstWrapperTestBase
 				"SimpleNonRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"1 stk kl. 07:30", 
-			DosisTilTekstWrapper.convertShortText(dosage));
+                "1 stk kl. 7:30",
+                DosisTilTekstWrapper.convertShortText(dosage));
 		Assert.assertEquals(
 				1.0, 
 				DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue().doubleValue(),

@@ -39,16 +39,12 @@ public class CombinedTwoPeriodesConverterTest extends DosisTilTekstWrapperTestBa
 			"DefaultMultiPeriodeLongTextConverterImpl", 
 			DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"Doseringen indeholder flere perioder:\n"+
-			"\n"+
-			"Doseringen foretages kun lørdag den 1. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   Lørdag den 1. januar 2011: 1 dråbe 4 gange\n"+
-			"\n"+
-			"Doseringsforløbet starter søndag den 2. januar 2011 og gentages hver dag:\n"+
-			"   Doseringsforløb:\n"+
-			"   1 dråbe 2 gange daglig",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering kun d. 1. jan. 2011:\n" +
+                        "1 dråbe 4 gange\n" +
+                        "\n" +
+                        "Dosering fra d. 2. jan. 2011:\n" +
+                        "1 dråbe 2 gange hver dag",
+                DosisTilTekstWrapper.convertLongText(dosage));
 			Assert.assertEquals(
 					"CombinedTwoPeriodesConverterImpl", 
 					DosisTilTekstWrapper.getShortTextConverterClassName(dosage, 100));
@@ -142,18 +138,14 @@ public class CombinedTwoPeriodesConverterTest extends DosisTilTekstWrapperTestBa
 			"DefaultMultiPeriodeLongTextConverterImpl", 
 			DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"Doseringen indeholder flere perioder:\n"+
-			"\n"+
-			"Doseringsforløbet starter lørdag den 1. januar 2011, og ophører mandag den 3. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   Lørdag den 1. januar 2011: 2 dråber morgen + 2 dråber aften\n"+
-			"   Søndag den 2. januar 2011: 2 dråber morgen + 2 dråber aften\n"+
-			"   Mandag den 3. januar 2011: 2 dråber morgen + 2 dråber aften\n"+
-			"\n"+
-			"Doseringsforløbet starter tirsdag den 4. januar 2011 og gentages hver dag:\n"+
-			"   Doseringsforløb:\n"+
-			"   1 dråbe morgen + 1 dråbe aften",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 3. jan. 2011:\n" +
+                        "Lørdag d. 1. jan. 2011: 2 dråber morgen og 2 dråber aften\n" +
+                        "Søndag d. 2. jan. 2011: 2 dråber morgen og 2 dråber aften\n" +
+                        "Mandag d. 3. jan. 2011: 2 dråber morgen og 2 dråber aften\n" +
+                        "\n" +
+                        "Dosering fra d. 4. jan. 2011:\n" +
+                        "1 dråbe morgen og 1 dråbe aften - hver dag",
+                DosisTilTekstWrapper.convertLongText(dosage));
 			Assert.assertEquals(
 					"CombinedTwoPeriodesConverterImpl", 
 					DosisTilTekstWrapper.getShortTextConverterClassName(dosage, 100));
@@ -197,20 +189,16 @@ public class CombinedTwoPeriodesConverterTest extends DosisTilTekstWrapperTestBa
 			"DefaultMultiPeriodeLongTextConverterImpl", 
 			DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"Doseringen indeholder flere perioder:\n"+
-			"\n"+
-			"Doseringsforløbet starter lørdag den 1. januar 2011, og ophører mandag den 3. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   Lørdag den 1. januar 2011: 2 dråber morgen + 2 dråber aften\n"+
-			"   Søndag den 2. januar 2011: 2 dråber morgen + 2 dråber aften\n"+
-			"   Mandag den 3. januar 2011: 2 dråber morgen + 2 dråber aften.\n"+
-			"   Bemærk: tages med rigeligt vand\n"+
-			"\n"+
-			"Doseringsforløbet starter tirsdag den 4. januar 2011 og gentages hver dag:\n"+
-			"   Doseringsforløb:\n"+
-			"   1 dråbe morgen + 1 dråbe aften.\n"+
-			"   Bemærk: tages med rigeligt vand",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 3. jan. 2011:\n" +
+                        "Lørdag d. 1. jan. 2011: 2 dråber morgen og 2 dråber aften\n" +
+                        "Søndag d. 2. jan. 2011: 2 dråber morgen og 2 dråber aften\n" +
+                        "Mandag d. 3. jan. 2011: 2 dråber morgen og 2 dråber aften\n" +
+                        "Bemærk: tages med rigeligt vand\n" +
+                        "\n" +
+                        "Dosering fra d. 4. jan. 2011:\n" +
+                        "1 dråbe morgen og 1 dråbe aften - hver dag\n" +
+                        "Bemærk: tages med rigeligt vand",
+                DosisTilTekstWrapper.convertLongText(dosage));
 			Assert.assertEquals("CombinedTwoPeriodesConverterImpl", DosisTilTekstWrapper.getShortTextConverterClassName(dosage, 200));
 			Assert.assertEquals(
 					"2 dråber morgen og aften i 3 dage, herefter 1 dråbe morgen og aften.\nBemærk: tages med rigeligt vand", 
@@ -252,20 +240,16 @@ public class CombinedTwoPeriodesConverterTest extends DosisTilTekstWrapperTestBa
 			"DefaultMultiPeriodeLongTextConverterImpl", 
 			DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-			"Doseringen indeholder flere perioder:\n"+
-			"\n"+
-			"Doseringsforløbet starter lørdag den 1. januar 2011, og ophører mandag den 3. januar 2011:\n"+
-			"   Doseringsforløb:\n"+
-			"   Lørdag den 1. januar 2011: 2 dråber morgen + 2 dråber aften\n"+
-			"   Søndag den 2. januar 2011: 2 dråber morgen + 2 dråber aften\n"+
-			"   Mandag den 3. januar 2011: 2 dråber morgen + 2 dråber aften.\n"+
-			"   Bemærk: tages med rigeligt vand\n"+
-			"\n"+
-			"Doseringsforløbet starter tirsdag den 4. januar 2011 og gentages hver dag:\n"+
-			"   Doseringsforløb:\n"+
-			"   1 dråbe morgen + 1 dråbe aften.\n"+
-			"   Bemærk: ved måltid",
-			DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 3. jan. 2011:\n" +
+                        "Lørdag d. 1. jan. 2011: 2 dråber morgen og 2 dråber aften\n" +
+                        "Søndag d. 2. jan. 2011: 2 dråber morgen og 2 dråber aften\n" +
+                        "Mandag d. 3. jan. 2011: 2 dråber morgen og 2 dråber aften\n" +
+                        "Bemærk: tages med rigeligt vand\n" +
+                        "\n" +
+                        "Dosering fra d. 4. jan. 2011:\n" +
+                        "1 dråbe morgen og 1 dråbe aften - hver dag\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 
 			Assert.assertEquals(
 					"2 dråber morgen og aften i 3 dage, herefter 1 dråbe morgen og aften.\n"+

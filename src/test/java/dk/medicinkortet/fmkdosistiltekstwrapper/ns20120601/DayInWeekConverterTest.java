@@ -37,12 +37,11 @@ public class DayInWeekConverterTest extends DosisTilTekstWrapperTestBase {
 				"DefaultLongTextConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, forløbet gentages efter 14 dage, og ophører søndag den 30. januar 2011.\nBemærk at doseringen har et komplekst forløb:\n"+
-				"   Doseringsforløb:\n"+
-				"   Mandag den 3. januar 2011: 1 tablet morgen\n"+
-				"   Mandag den 10. januar 2011: 1 tablet morgen.\n"+
-				"   Bemærk: ved måltid",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011 - gentages hver 14. dag:\n" +
+                        "Dag 3: 1 tablet morgen\n" +
+                        "Dag 10: 1 tablet morgen\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 	}
 	
 	// FMK-3273
@@ -72,12 +71,11 @@ public class DayInWeekConverterTest extends DosisTilTekstWrapperTestBase {
 					"DefaultLongTextConverterImpl", 
 					DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 			Assert.assertEquals(
-					"Doseringsforløbet starter lørdag den 1. januar 2011, forløbet gentages efter 14 dage, og ophører søndag den 30. januar 2011.\nBemærk at doseringen har et komplekst forløb:\n"+
-					"   Doseringsforløb:\n"+
-					"   Mandag den 3. januar 2011: 1 tablet morgen\n"+
-					"   Mandag den 10. januar 2011: 1 tablet morgen.\n"+
-					"   Bemærk: ved måltid",
-					DosisTilTekstWrapper.convertLongText(dosage));
+                    "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011 - gentages hver 14. dag:\n" +
+                            "Dag 3: 1 tablet morgen\n" +
+                            "Dag 10: 1 tablet morgen\n" +
+                            "Bemærk: ved måltid",
+                    DosisTilTekstWrapper.convertLongText(dosage));
 		}
 
 }

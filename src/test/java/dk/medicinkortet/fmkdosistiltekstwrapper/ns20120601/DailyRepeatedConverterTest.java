@@ -58,11 +58,10 @@ public class DailyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   1 tablet + 1 tablet + 1 tablet efter behov.\n"+
-				"   Bemærk: ved måltid",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "1 tablet, 1 tablet og 1 tablet efter behov hver dag\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"ParacetamolConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -91,11 +90,10 @@ public class DailyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 				"DailyRepeatedConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, gentages hver dag, og ophører søndag den 30. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   1 tablet + 1 tablet + 1 tablet efter behov.\n"+
-				"   Bemærk: ved måltid",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011 til d. 30. jan. 2011:\n" +
+                        "1 tablet, 1 tablet og 1 tablet efter behov hver dag\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"ParacetamolConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
@@ -132,10 +130,9 @@ public class DailyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 		);
 
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011 og gentages hver dag:\n" + 
-				"   Doseringsforløb:\n" + 
-				"   1 tablet kl. 08:00 + 1 tablet kl. 12:00 + 1 tablet kl. 16:00 + 1 tablet kl. 20:00 + 1 tablet efter behov + 1 tablet efter behov + 1 tablet efter behov",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "1 tablet efter behov, 1 tablet efter behov, 1 tablet efter behov, 1 tablet kl. 8:00, 1 tablet kl. 12:00, 1 tablet kl. 16:00 og 1 tablet kl. 20:00 - hver dag",
+                DosisTilTekstWrapper.convertLongText(dosage));
 
 		Assert.assertEquals(
 			"DailyRepeatedConverterImpl", 
@@ -164,7 +161,7 @@ public class DailyRepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 		
 		String shortText = DosisTilTekstWrapper.convertShortText(dosage);
 		String longText = DosisTilTekstWrapper.convertLongText(dosage);
-		assertTrue(longText.contains("12 ml 1 gang daglig"));
+        assertTrue(longText.contains("12 ml hver dag"));
 	}
 
 }

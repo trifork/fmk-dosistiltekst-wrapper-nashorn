@@ -62,13 +62,12 @@ public class LimitedNumberOfDaysConverterTest extends DosisTilTekstWrapperTestBa
 						PlainDoseWrapper.makeDose(new BigDecimal(4)), 
 						PlainDoseWrapper.makeDose(new BigDecimal(4))))));		
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, og ophører tirsdag den 4. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   Lørdag den 1. januar 2011: 4 måleskefulde 2 gange\n"+
-				"   Søndag den 2. januar 2011: 4 måleskefulde 2 gange\n"+
-				"   Mandag den 3. januar 2011: 4 måleskefulde 2 gange\n"+
-				"   Tirsdag den 4. januar 2011: 4 måleskefulde 2 gange.\n"+
-				"   Bemærk: ved måltid",
+				"Dosering fra d. 1. jan. 2011 til d. 4. jan. 2011:\n" +
+						"Lørdag d. 1. jan. 2011: 4 måleskefulde 2 gange\n" +
+						"Søndag d. 2. jan. 2011: 4 måleskefulde 2 gange\n" +
+						"Mandag d. 3. jan. 2011: 4 måleskefulde 2 gange\n" +
+						"Tirsdag d. 4. jan. 2011: 4 måleskefulde 2 gange\n" +
+						"Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"LimitedNumberOfDaysConverterImpl", 
@@ -115,13 +114,12 @@ public class LimitedNumberOfDaysConverterTest extends DosisTilTekstWrapperTestBa
 						PlainDoseWrapper.makeDose(new BigDecimal(4), true), 
 						PlainDoseWrapper.makeDose(new BigDecimal(4), true)))));		
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011, og ophører tirsdag den 4. januar 2011:\n"+
-				"   Doseringsforløb:\n"+
-				"   Lørdag den 1. januar 2011: 4 måleskefulde efter behov højst 2 gange\n"+
-				"   Søndag den 2. januar 2011: 4 måleskefulde efter behov højst 2 gange\n"+
-				"   Mandag den 3. januar 2011: 4 måleskefulde efter behov højst 2 gange\n"+
-				"   Tirsdag den 4. januar 2011: 4 måleskefulde efter behov højst 2 gange.\n"+
-				"   Bemærk: ved måltid",
+				"Dosering fra d. 1. jan. 2011 til d. 4. jan. 2011:\n" +
+						"Lørdag d. 1. jan. 2011: 4 måleskefulde efter behov, højst 2 gange dagligt\n" +
+						"Søndag d. 2. jan. 2011: 4 måleskefulde efter behov, højst 2 gange dagligt\n" +
+						"Mandag d. 3. jan. 2011: 4 måleskefulde efter behov, højst 2 gange dagligt\n" +
+						"Tirsdag d. 4. jan. 2011: 4 måleskefulde efter behov, højst 2 gange dagligt\n" +
+						"Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertNull(DosisTilTekstWrapper.calculateDailyDosis(dosage).getValue());
 		Assert.assertEquals(DosageType.AccordingToNeed, DosisTilTekstWrapper.getDosageType(dosage));
@@ -138,10 +136,9 @@ public class LimitedNumberOfDaysConverterTest extends DosisTilTekstWrapperTestBa
 						1, 
 						PlainDoseWrapper.makeDose(new BigDecimal(4))))));		
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011 og ophører efter det angivne forløb:\n"+
-				"   Doseringsforløb:\n"+
-				"   Lørdag den 1. januar 2011: 4 tabletter.\n"+
-				"   Bemærk: ved måltid",
+				"Dosering kun d. 1. jan. 2011:\n" +
+						"4 tabletter\n" +
+						"Bemærk: ved måltid",
 				DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"LimitedNumberOfDaysConverterImpl", 

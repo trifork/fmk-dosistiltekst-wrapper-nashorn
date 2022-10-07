@@ -59,15 +59,14 @@ public class MorningNoonEveningNightInNDaysConverterTest extends DosisTilTekstWr
 				"DefaultLongTextConverterImpl", 
 				DosisTilTekstWrapper.getLongTextConverterClassName(dosage));
 		Assert.assertEquals(
-				"Doseringsforløbet starter lørdag den 1. januar 2011 og ophører efter det angivne forløb:\n"+
-				"   Doseringsforløb:\n"+
-				"   Lørdag den 1. januar 2011: 1 tablet morgen\n"+
-				"   Søndag den 2. januar 2011: 1 tablet morgen\n"+
-				"   Mandag den 3. januar 2011: 1 tablet morgen\n"+
-				"   Tirsdag den 4. januar 2011: 1 tablet morgen\n"+
-				"   Onsdag den 5. januar 2011: 1 tablet morgen.\n"+
-				"   Bemærk: ved måltid",
-				DosisTilTekstWrapper.convertLongText(dosage));
+                "Dosering fra d. 1. jan. 2011:\n" +
+                        "Lørdag d. 1. jan. 2011: 1 tablet morgen\n" +
+                        "Søndag d. 2. jan. 2011: 1 tablet morgen\n" +
+                        "Mandag d. 3. jan. 2011: 1 tablet morgen\n" +
+                        "Tirsdag d. 4. jan. 2011: 1 tablet morgen\n" +
+                        "Onsdag d. 5. jan. 2011: 1 tablet morgen\n" +
+                        "Bemærk: ved måltid",
+                DosisTilTekstWrapper.convertLongText(dosage));
 		Assert.assertEquals(
 				"MorningNoonEveningNightInNDaysConverterImpl", 
 				DosisTilTekstWrapper.getShortTextConverterClassName(dosage));
