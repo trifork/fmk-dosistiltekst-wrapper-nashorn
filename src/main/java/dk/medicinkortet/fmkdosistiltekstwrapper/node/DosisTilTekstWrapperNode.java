@@ -6,12 +6,15 @@ import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.DTOHelper;
 import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.requestobjects.*;
 import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects.DosageProposalXmlDTO;
 import dk.medicinkortet.fmkdosistiltekstwrapper.vowrapper.DosageWrapper;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 public class DosisTilTekstWrapperNode {
+    private static final Logger logger = LogManager.getLogger(DosisTilTekstWrapperNode.class);
     private static String baseUrl;
 
     public static void initialize(String url) {
@@ -19,6 +22,8 @@ public class DosisTilTekstWrapperNode {
             baseUrl = url;
         else
             baseUrl = url + "/";
+
+        logger.info("Initialized DosisTilTekstWrapperNode with baseUrl: " + baseUrl);
     }
 
     private static void checkIfInitialized() {
