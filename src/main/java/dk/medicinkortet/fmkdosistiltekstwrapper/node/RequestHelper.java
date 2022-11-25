@@ -14,9 +14,10 @@ public class RequestHelper {
 
     public static String post(String endpoint, String inputJson, String methodName) {
         var request = HttpRequest.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
+                .POST(HttpRequest.BodyPublishers.ofString(inputJson))
                 .uri(URI.create(endpoint))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(inputJson))
                 .build();
 
         var client = HttpClient.newHttpClient();
