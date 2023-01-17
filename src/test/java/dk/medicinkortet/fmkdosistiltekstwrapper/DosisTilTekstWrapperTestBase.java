@@ -15,11 +15,11 @@ public abstract class DosisTilTekstWrapperTestBase {
 	public void setUp() throws FileNotFoundException, ScriptException {
 		if(!isInitialized) {
 			String jsLocation = System.getProperty("dosistiltekstJSlocation");
-			if(jsLocation == null) {
+			if (jsLocation == null) {
 				jsLocation = "node_modules/fmk-dosis-til-tekst-ts/dist/dosistiltekst.js"; //  "../fmk-dosis-til-tekst-ts/target/dosistiltekst.js";	// For typical local developer use. Property value usually set on jenkins
 			}
-			DosisTilTekstWrapper.initialize(new FileReader(jsLocation));
-//			DosisTilTekstWrapper.initialize("http://localhost:8000/"); // run fmk-dosis-til-tekst-node locally to test using node server
+			DosisTilTekstWrapper.initializeNashorn(new FileReader(jsLocation));
+//			DosisTilTekstWrapper.initializeAndUseNode("http://localhost:8000/"); // run fmk-dosis-til-tekst-node locally to test using node server
 			isInitialized = true;
 		}
 	}

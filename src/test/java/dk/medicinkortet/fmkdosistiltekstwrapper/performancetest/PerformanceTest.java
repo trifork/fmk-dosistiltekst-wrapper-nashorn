@@ -37,13 +37,13 @@ public class PerformanceTest {
         if (jsLocation == null) {
             jsLocation = "node_modules/fmk-dosis-til-tekst-ts/dist/dosistiltekst.js";
         }
-        DosisTilTekstWrapper.initialize(new FileReader(jsLocation));
+        DosisTilTekstWrapper.initializeNashorn(new FileReader(jsLocation));
         overallTest();
     }
 
     @Test
     public void testWithNode() throws ParseException {
-        DosisTilTekstWrapper.initialize("http://localhost:8000/");
+        DosisTilTekstWrapper.initializeAndUseNode("http://localhost:8000/");
         overallTest();
     }
 
