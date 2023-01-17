@@ -10,28 +10,30 @@ import java.util.Date;
 import java.util.List;
 
 public class DosisTilTekstWrapper {
-    private static boolean usesNashorn;
+    private static boolean usesNashorn = true;
 
     public enum TextOptions {
         STANDARD,
         VKA
     }
 
-    public static void initialize(String nodeServerBaseUrl) {
+    public static void initializeAndUseNode(String nodeServerBaseUrl) {
         usesNashorn = false;
         DosisTilTekstWrapperNode.initialize(nodeServerBaseUrl);
     }
 
-    public static void initialize(Reader javascriptFileReader) throws ScriptException {
-        usesNashorn = true;
+    public static void initializeNashorn(Reader javascriptFileReader) throws ScriptException {
         DosisTilTekstWrapperNashorn.initialize(javascriptFileReader);
     }
 
     public static DosageProposalResult getDosageProposalResult(String type, String iteration, String mapping, String unitTextSingular, String unitTextPlural, String supplementaryText, List<Date> beginDates, List<Date> endDates, FMKVersion version, int dosageProposalVersion, Integer shortTextMaxLength) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.getDosageProposalResult(type, iteration, mapping, unitTextSingular, unitTextPlural, supplementaryText, beginDates, endDates, version, dosageProposalVersion, shortTextMaxLength);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.getDosageProposalResult(type, iteration, mapping, unitTextSingular, unitTextPlural, supplementaryText, beginDates, endDates, version, dosageProposalVersion, shortTextMaxLength);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.getDosageProposalResult(type, iteration, mapping, unitTextSingular, unitTextPlural, supplementaryText, beginDates, endDates, version, dosageProposalVersion, shortTextMaxLength);
+        return DosisTilTekstWrapperNashorn.getDosageProposalResult(type, iteration, mapping, unitTextSingular, unitTextPlural, supplementaryText, beginDates, endDates, version, dosageProposalVersion, shortTextMaxLength);
     }
 
     public static DosageProposalResult getDosageProposalResult(String type, String iteration, String mapping, String unitTextSingular, String unitTextPlural, String supplementaryText, List<Date> beginDates, List<Date> endDates, FMKVersion version, int dosageProposalVersion) {
@@ -43,10 +45,13 @@ public class DosisTilTekstWrapper {
     }
 
     public static DosageTranslationCombined convertCombined(DosageWrapper dosage, DosisTilTekstWrapper.TextOptions options) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.convertCombined(dosage, options);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.convertCombined(dosage, options);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.convertCombined(dosage, options);
+        return DosisTilTekstWrapperNashorn.convertCombined(dosage, options);
     }
 
     public static String convertLongText(DosageWrapper dosage) {
@@ -54,10 +59,13 @@ public class DosisTilTekstWrapper {
     }
 
     public static String convertLongText(DosageWrapper dosage, DosisTilTekstWrapper.TextOptions options) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.convertLongText(dosage, options);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.convertLongText(dosage, options);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.convertLongText(dosage, options);
+        return DosisTilTekstWrapperNashorn.convertLongText(dosage, options);
     }
 
     public static String convertShortText(DosageWrapper dosage) {
@@ -65,10 +73,13 @@ public class DosisTilTekstWrapper {
     }
 
     public static String convertShortText(DosageWrapper dosage, DosisTilTekstWrapper.TextOptions options) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.convertShortText(dosage, options);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.convertShortText(dosage, options);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.convertShortText(dosage, options);
+        return DosisTilTekstWrapperNashorn.convertShortText(dosage, options);
     }
 
     public static String convertShortText(DosageWrapper dosage, int maxLength) {
@@ -76,53 +87,74 @@ public class DosisTilTekstWrapper {
     }
 
     public static String convertShortText(DosageWrapper dosage, int maxLength, DosisTilTekstWrapper.TextOptions options) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.convertShortText(dosage, maxLength, options);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.convertShortText(dosage, maxLength, options);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.convertShortText(dosage, maxLength, options);
+        return DosisTilTekstWrapperNashorn.convertShortText(dosage, maxLength, options);
     }
 
     public static String getShortTextConverterClassName(DosageWrapper dosage) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.getShortTextConverterClassName(dosage);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.getShortTextConverterClassName(dosage);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.getShortTextConverterClassName(dosage);
+        return DosisTilTekstWrapperNashorn.getShortTextConverterClassName(dosage);
     }
 
     public static String getShortTextConverterClassName(DosageWrapper dosage, int maxLength) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.getShortTextConverterClassName(dosage, maxLength);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.getShortTextConverterClassName(dosage, maxLength);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.getShortTextConverterClassName(dosage, maxLength);
+        return DosisTilTekstWrapperNashorn.getShortTextConverterClassName(dosage, maxLength);
     }
 
 
     public static String getLongTextConverterClassName(DosageWrapper dosage) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.getLongTextConverterClassName(dosage);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.getLongTextConverterClassName(dosage);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.getLongTextConverterClassName(dosage);
+        return DosisTilTekstWrapperNashorn.getLongTextConverterClassName(dosage);
     }
 
     public static DosageType getDosageType(DosageWrapper dosage) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.getDosageType(dosage);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.getDosageType(dosage);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.getDosageType(dosage);
+        return DosisTilTekstWrapperNashorn.getDosageType(dosage);
     }
 
     public static DosageType getDosageType144(DosageWrapper dosage) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.getDosageType144(dosage);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.getDosageType144(dosage);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.getDosageType144(dosage);
+        return DosisTilTekstWrapperNashorn.getDosageType144(dosage);
     }
 
     public static DailyDosis calculateDailyDosis(DosageWrapper dosage) {
-        if (usesNashorn) {
-            return DosisTilTekstWrapperNashorn.calculateDailyDosis(dosage);
+        if (!usesNashorn) {
+            try {
+                return DosisTilTekstWrapperNode.calculateDailyDosis(dosage);
+            } catch (RuntimeException ignored) {
+            }
         }
-        return DosisTilTekstWrapperNode.calculateDailyDosis(dosage);
+        return DosisTilTekstWrapperNashorn.calculateDailyDosis(dosage);
     }
 
 }

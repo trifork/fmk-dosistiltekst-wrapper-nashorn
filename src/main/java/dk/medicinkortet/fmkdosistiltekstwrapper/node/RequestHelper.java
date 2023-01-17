@@ -1,5 +1,7 @@
 package dk.medicinkortet.fmkdosistiltekstwrapper.node;
 
+import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.DTOHelper;
+import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects.ErrorResponseDTO;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -24,13 +26,33 @@ public class RequestHelper {
         try {
             var response = client.send(request, HttpResponse.BodyHandlers.ofString());
             logger.info("POST " + endpoint);
+
+            checkForErrorResponse(response, methodName);
+
             return response.body();
         } catch (IOException e) {
             logger.error("", e);
-            throw new RuntimeException("IOException in DosisTilTekstWrapperNode." + methodName +"()", e);
+            throw new RuntimeException("IOException in DosisTilTekstWrapperNode." + methodName + "()", e);
         } catch (InterruptedException e) {
             logger.error("", e);
             throw new RuntimeException("InterruptedException in DosisTilTekstWrapperNode." + methodName + "()", e);
+        }
+    }
+
+    private static void checkForErrorResponse(HttpResponse<String> response, String methodName) {
+        if (response.statusCode() != 200) {
+            var msg = "";
+
+            try {
+                var errorResponseDTO = DTOHelper.convertJsonToDTO(response.body(), ErrorResponseDTO.class, methodName);
+                msg = errorResponseDTO.getMsg();
+            } catch (Exception ignored) {
+            }
+
+            logger.error("DosisTilTekstWrapperNode." + methodName + " received a response with status code "
+                    + response.statusCode() + " and message: " + msg);
+
+            throw new RuntimeException("Received error code in DosisTilTekstWrapperNode." + methodName + "()");
         }
     }
 

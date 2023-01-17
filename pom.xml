@@ -12,7 +12,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <revision>1.1.4
+        <revision>1.1.5
         </revision>  <!-- No snapshot here - will be added by Jenkins - bump version manually after release-->
     </properties>
 
@@ -52,7 +52,6 @@
             <artifactId>fmk-dosistiltekst-wrapper</artifactId>
             <version>1.1.5</version>
         </dependency>
-
 
         <dependency>
             <groupId>junit</groupId>
