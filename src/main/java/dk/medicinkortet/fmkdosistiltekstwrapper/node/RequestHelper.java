@@ -6,6 +6,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -27,7 +28,7 @@ public class RequestHelper {
             var response = client.send(request, HttpResponse.BodyHandlers.ofString());
             logger.info("POST " + endpoint);
 
-            checkForErrorResponse(response, methodName);
+            checkForErrorResponse(response, methodName, inputJson);
 
             return response.body();
         } catch (IOException e) {
@@ -39,21 +40,32 @@ public class RequestHelper {
         }
     }
 
-    private static void checkForErrorResponse(HttpResponse<String> response, String methodName) {
+    private static void checkForErrorResponse(HttpResponse<String> response, String methodName, String inputJson) {
         if (response.statusCode() != 200) {
-            var msg = "";
+            var msg = getErrorMsg(response, methodName);
+            var inputJsonSize = getStringByteSize(inputJson);
 
-            try {
-                var errorResponseDTO = DTOHelper.convertJsonToDTO(response.body(), ErrorResponseDTO.class, methodName);
-                msg = errorResponseDTO.getMsg();
-            } catch (Exception ignored) {
-            }
-
-            logger.error("DosisTilTekstWrapperNode." + methodName + " received a response with status code "
+            logger.error("(Request body size: " + inputJsonSize + " bytes) Received a response with status code "
                     + response.statusCode() + " and message: " + msg);
 
             throw new RuntimeException("Received error code in DosisTilTekstWrapperNode." + methodName + "()");
         }
     }
 
+    private static String getErrorMsg(HttpResponse<String> response, String methodName) {
+        try {
+            var errorResponseDTO = DTOHelper.convertJsonToDTO(response.body(), ErrorResponseDTO.class, methodName);
+            return errorResponseDTO.getMsg();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    private static int getStringByteSize(String str) {
+        try {
+            return str.getBytes("UTF-8").length;
+        } catch (UnsupportedEncodingException | NullPointerException e) {
+            return 0;
+        }
+    }
 }
