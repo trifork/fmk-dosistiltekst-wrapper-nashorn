@@ -316,6 +316,10 @@ public class DosisTilTekstWrapperNashorn {
             throw new RuntimeException("DosisTilTekstWrapper not initialized - call initialize() method before invoking any of the methods");
         }
 
+        if(dosage == null) {
+            throw new RuntimeException("Cannot calculate dosageType, dosage is null");
+        }
+
         String json = "(unset)";
         Object res;
         try {
