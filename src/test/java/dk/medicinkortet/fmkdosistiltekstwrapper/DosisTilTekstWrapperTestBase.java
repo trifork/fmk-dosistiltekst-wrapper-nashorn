@@ -16,7 +16,7 @@ public abstract class DosisTilTekstWrapperTestBase {
 		if(!isInitialized) {
 			String jsLocation = System.getProperty("dosistiltekstJSlocation");
 			if (jsLocation == null) {
-				jsLocation = "../fmk-dosis-til-tekst-ts/dist/dosistiltekst.js";	// For typical local developer use. Property value usually set on jenkins
+				jsLocation = "node_modules/fmk-dosis-til-tekst-ts/dist/dosistiltekst.js"; //  "../fmk-dosis-til-tekst-ts/target/dosistiltekst.js";    // For typical local developer use. Property value usually set on jenkins
 			}
 			DosisTilTekstWrapper.initializeNashorn(new FileReader(jsLocation));
 //			DosisTilTekstWrapper.initializeAndUseNode("http://localhost:8000/"); // run fmk-dosis-til-tekst-node locally to test using node server
