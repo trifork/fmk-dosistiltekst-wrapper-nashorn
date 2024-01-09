@@ -54,9 +54,7 @@ public class DosisTilTekstWrapperNode {
 
         var endpoint = "convertCombined";
 
-        var dosageJson = DTOHelper.convertDosageWrapperToJson(dosage, "convertCombined");
-        var dto = new DosageWrapperWithOptionsDTO(dosageJson, options.toString());
-        var inputJson = DTOHelper.convertDTOToJson(dto, "convertCombined");
+        String inputJson = getInputJson(dosage, "convertCombined", options);
 
         var responseBody = RequestHelper.post(baseUrl + endpoint, inputJson, "convertCombined");
 
@@ -67,14 +65,18 @@ public class DosisTilTekstWrapperNode {
         return DTOHelper.convertJsonToDTO(responseBody, DosageTranslationCombined.class, "convertCombined");
     }
 
+    public static String getInputJson(DosageWrapper dosage, String methodName, DosisTilTekstWrapper.TextOptions options) {
+        var dosageJson = DTOHelper.convertDosageWrapperToJson(dosage, methodName);
+        var dto = new DosageWrapperWithOptionsDTO(dosageJson, options.toString());
+        return DTOHelper.convertDTOToJson(dto, methodName);
+    }
+
     public static String convertLongText(DosageWrapper dosage, DosisTilTekstWrapper.TextOptions options) {
         checkIfInitialized();
 
         var endpoint = "convertLongText";
 
-        var dosageJson = DTOHelper.convertDosageWrapperToJson(dosage, "convertLongText");
-        var dto = new DosageWrapperWithOptionsDTO(dosageJson, options.toString());
-        var inputJson = DTOHelper.convertDTOToJson(dto, "convertLongText");
+        String inputJson = getInputJson(dosage, "convertLongText", options);
 
         var result = RequestHelper.post(baseUrl + endpoint, inputJson, "convertLongText");
         if (result == null || result.isEmpty())

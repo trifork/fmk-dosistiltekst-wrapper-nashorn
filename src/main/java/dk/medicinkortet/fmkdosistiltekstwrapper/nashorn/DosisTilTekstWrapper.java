@@ -3,6 +3,8 @@ package dk.medicinkortet.fmkdosistiltekstwrapper.nashorn;
 import dk.medicinkortet.fmkdosistiltekstwrapper.*;
 import dk.medicinkortet.fmkdosistiltekstwrapper.node.DosisTilTekstWrapperNode;
 import dk.medicinkortet.fmkdosistiltekstwrapper.vowrapper.DosageWrapper;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.script.ScriptException;
 import java.io.Reader;
@@ -11,6 +13,8 @@ import java.util.List;
 
 public class DosisTilTekstWrapper {
     private static boolean usesNashorn = true;
+
+    private static final Logger logger = LogManager.getLogger(DosisTilTekstWrapper.class);
 
     public enum TextOptions {
         STANDARD,
@@ -48,7 +52,8 @@ public class DosisTilTekstWrapper {
         if (!usesNashorn) {
             try {
                 return DosisTilTekstWrapperNode.convertCombined(dosage, options);
-            } catch (RuntimeException ignored) {
+            } catch (RuntimeException ex) {
+                logger.error("Exception in nodejs call (convertCombined), json size: " + DosisTilTekstWrapperNode.getInputJson(dosage, "convertCombined", options).length(), ex);
             }
         }
         return DosisTilTekstWrapperNashorn.convertCombined(dosage, options);
@@ -62,7 +67,8 @@ public class DosisTilTekstWrapper {
         if (!usesNashorn) {
             try {
                 return DosisTilTekstWrapperNode.convertLongText(dosage, options);
-            } catch (RuntimeException ignored) {
+            } catch (RuntimeException ex) {
+                logger.error("Exception in nodejs call (convertLongText), json size: " + DosisTilTekstWrapperNode.getInputJson(dosage, "convertLongText", options).length(), ex);
             }
         }
         return DosisTilTekstWrapperNashorn.convertLongText(dosage, options);
@@ -76,7 +82,8 @@ public class DosisTilTekstWrapper {
         if (!usesNashorn) {
             try {
                 return DosisTilTekstWrapperNode.convertShortText(dosage, options);
-            } catch (RuntimeException ignored) {
+            } catch (RuntimeException ex) {
+                logger.error("Exception in nodejs call (convertShortText), json size: " + DosisTilTekstWrapperNode.getInputJson(dosage, "convertShortText", options).length(), ex);
             }
         }
         return DosisTilTekstWrapperNashorn.convertShortText(dosage, options);
@@ -90,7 +97,8 @@ public class DosisTilTekstWrapper {
         if (!usesNashorn) {
             try {
                 return DosisTilTekstWrapperNode.convertShortText(dosage, maxLength, options);
-            } catch (RuntimeException ignored) {
+            } catch (RuntimeException ex) {
+                logger.error("Exception in nodejs call (convertShortText#2), json size: " + DosisTilTekstWrapperNode.getInputJson(dosage, "convertShortText", options).length(), ex);
             }
         }
         return DosisTilTekstWrapperNashorn.convertShortText(dosage, maxLength, options);
