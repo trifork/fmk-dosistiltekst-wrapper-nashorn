@@ -6,8 +6,8 @@ import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.DTOHelper;
 import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.requestobjects.*;
 import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects.DosageProposalXmlDTO;
 import dk.medicinkortet.fmkdosistiltekstwrapper.vowrapper.DosageWrapper;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.http.HttpClient;
 import java.util.Date;
@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DosisTilTekstWrapperNode implements DosisTilTekstService {
-    private static final Logger logger = LogManager.getLogger(DosisTilTekstWrapperNode.class);
+    private static final Logger logger = LoggerFactory.getLogger(DosisTilTekstWrapperNode.class);
     private final RequestHelper requestHelper;
     private final String baseUrl;
 

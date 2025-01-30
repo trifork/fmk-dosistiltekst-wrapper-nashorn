@@ -2,8 +2,8 @@ package dk.medicinkortet.fmkdosistiltekstwrapper.node;
 
 import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.DTOHelper;
 import dk.medicinkortet.fmkdosistiltekstwrapper.node.dto.responseobjects.ErrorResponseDTO;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -13,7 +13,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class RequestHelper {
-    private static final Logger logger = LogManager.getLogger(RequestHelper.class);
+    private static final Logger logger = LoggerFactory.getLogger(RequestHelper.class);
     private final HttpClient client;
 
     public RequestHelper(HttpClient client) {
