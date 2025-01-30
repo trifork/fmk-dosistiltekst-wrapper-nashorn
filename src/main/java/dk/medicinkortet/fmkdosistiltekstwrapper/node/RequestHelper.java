@@ -14,8 +14,13 @@ import java.net.http.HttpResponse;
 
 public class RequestHelper {
     private static final Logger logger = LogManager.getLogger(RequestHelper.class);
+    private final HttpClient client;
 
-    public static String post(String endpoint, String inputJson, String methodName) {
+    public RequestHelper(HttpClient client) {
+        this.client = client;
+    }
+
+    public String post(String endpoint, String inputJson, String methodName) {
         var request = HttpRequest.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .POST(HttpRequest.BodyPublishers.ofString(inputJson))
@@ -23,7 +28,6 @@ public class RequestHelper {
                 .header("Content-Type", "application/json")
                 .build();
 
-        var client = HttpClient.newHttpClient();
         try {
             var response = client.send(request, HttpResponse.BodyHandlers.ofString());
             logger.info("POST " + endpoint);
@@ -40,7 +44,7 @@ public class RequestHelper {
         }
     }
 
-    private static void checkForErrorResponse(HttpResponse<String> response, String methodName, String inputJson) {
+    private void checkForErrorResponse(HttpResponse<String> response, String methodName, String inputJson) {
         if (response.statusCode() != 200) {
             var msg = getErrorMsg(response, methodName);
             var inputJsonSize = getStringByteSize(inputJson);
@@ -52,7 +56,7 @@ public class RequestHelper {
         }
     }
 
-    private static String getErrorMsg(HttpResponse<String> response, String methodName) {
+    private String getErrorMsg(HttpResponse<String> response, String methodName) {
         try {
             var errorResponseDTO = DTOHelper.convertJsonToDTO(response.body(), ErrorResponseDTO.class, methodName);
             return errorResponseDTO.getMsg();
@@ -61,7 +65,7 @@ public class RequestHelper {
         }
     }
 
-    private static int getStringByteSize(String str) {
+    private int getStringByteSize(String str) {
         try {
             return str.getBytes("UTF-8").length;
         } catch (UnsupportedEncodingException | NullPointerException e) {
