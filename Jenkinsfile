@@ -27,7 +27,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 cleanWs()
-                checkout([$class: 'GitSCM', branches: [[name: "*/master"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'fmk-dosistiltekst-wrapper-nashorn']], submoduleCfg: [], userRemoteConfigs: [[url: 'git@github.com:trifork/fmk-dosistiltekst-wrapper-nashorn.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: "*/master"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'fmk-dosistiltekst-wrapper-nashorn']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/trifork/fmk-dosistiltekst-wrapper-nashorn.git', credentialsId: 'github-app-FMK']]])
             }
         }
         stage('Build') {
