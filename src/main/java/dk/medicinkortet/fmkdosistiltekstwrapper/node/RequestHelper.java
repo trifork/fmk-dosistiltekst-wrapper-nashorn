@@ -7,13 +7,14 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class RequestHelper {
-    private static final Logger logger = LoggerFactory.getLogger(RequestHelper.class);
+    private final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private final HttpClient client;
 
     public RequestHelper(HttpClient client) {

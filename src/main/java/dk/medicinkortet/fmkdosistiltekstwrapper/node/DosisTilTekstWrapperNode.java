@@ -9,13 +9,14 @@ import dk.medicinkortet.fmkdosistiltekstwrapper.vowrapper.DosageWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.invoke.MethodHandles;
 import java.net.http.HttpClient;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 public class DosisTilTekstWrapperNode implements DosisTilTekstService {
-    private static final Logger logger = LoggerFactory.getLogger(DosisTilTekstWrapperNode.class);
+    private final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private final RequestHelper requestHelper;
     private final String baseUrl;
 
