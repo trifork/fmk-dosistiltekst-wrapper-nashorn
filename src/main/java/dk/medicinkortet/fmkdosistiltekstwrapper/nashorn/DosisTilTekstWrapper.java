@@ -37,7 +37,10 @@ public class DosisTilTekstWrapper {
         // this is a seldom-called explicit initialisation, and not e.g. singleton initialisation
         // done in a getter.
         if(dosisTilTekstWrapper != null) {
+            //NOTE: returning in this case prevents reinitialisation – we really shouldn't see reinitialisation in
+            // production mode, and hopefully this won't cause issues in unit tests.
             logger.warn("Reinitializing DosisTilTekstWrapper - we should only see this during testing");
+            return;
         }
         dosisTilTekstWrapper = new DosisTilTekstWrapperNode(HttpClient.newHttpClient(), nodeServerBaseUrl);
     }
