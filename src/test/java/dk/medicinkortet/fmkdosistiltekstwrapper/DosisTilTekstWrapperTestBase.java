@@ -18,8 +18,7 @@ public abstract class DosisTilTekstWrapperTestBase {
 			if (jsLocation == null) {
 				jsLocation = "node_modules/fmk-dosis-til-tekst-ts/dist/dosistiltekst.js"; //  "../fmk-dosis-til-tekst-ts/target/dosistiltekst.js";    // For typical local developer use. Property value usually set on jenkins
 			}
-			DosisTilTekstWrapper.initializeNashorn(new FileReader(jsLocation));
-//			DosisTilTekstWrapper.initializeAndUseNode("http://localhost:8000/"); // run fmk-dosis-til-tekst-node locally to test using node server
+			DosisTilTekstWrapper.initializeAndUseNode("http://localhost:8000/"); // run fmk-dosis-til-tekst-node locally to test using node server
 			isInitialized = true;
 		}
 	}
