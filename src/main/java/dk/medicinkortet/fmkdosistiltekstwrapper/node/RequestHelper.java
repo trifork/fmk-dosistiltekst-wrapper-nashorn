@@ -31,7 +31,7 @@ public class RequestHelper {
 
         try {
             var response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            logger.info("POST " + endpoint);
+            logger.debug("POST {}", endpoint);
 
             checkForErrorResponse(response, methodName, inputJson);
 

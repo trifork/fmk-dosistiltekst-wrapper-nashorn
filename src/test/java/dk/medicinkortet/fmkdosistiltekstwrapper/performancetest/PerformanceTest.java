@@ -7,38 +7,69 @@ import dk.medicinkortet.fmkdosistiltekstwrapper.nashorn.DosisTilTekstWrapper;
 import dk.medicinkortet.fmkdosistiltekstwrapper.vowrapper.*;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.script.ScriptException;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.lang.invoke.MethodHandles;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@Ignore
 public class PerformanceTest {
-    private final int REPETITIONS = 40;
-    private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    private final int REPETITIONS = 1_000;
+    private final int PARALLEL_TASKS = 8;
 
     @Before
     public void setUp() {
-
+        DosisTilTekstWrapper.initializeAndUseNode("http://localhost:8000/");
     }
 
     @Test
     public void testWithNode() throws ParseException {
-        DosisTilTekstWrapper.initializeAndUseNode("http://localhost:8000/");
-        overallTest();
+        overallTest("Standard test");
     }
 
-    private void overallTest() throws ParseException {
+    @Test
+    public void parallelTestWithNode() throws InterruptedException {
+        var tasks = new ArrayList<Callable<Void>>();
+        for (int i=0; i<PARALLEL_TASKS; i++) {
+            final int taskNum = i;
+            tasks.add(() -> {
+                try {
+                logger.info("Task {} performing work", taskNum);
+                overallTest("Parallel test (task " + taskNum + ")");
+                logger.info("Task {} done", taskNum);
+                return null;
+                } catch (Exception e) {
+                    logger.error("Task {} failed", taskNum, e);
+                    throw e;
+                }
+            });
+        }
+
+        var executor = Executors.newCachedThreadPool();
+        try {
+            executor.invokeAll(tasks);
+        } finally {
+            executor.shutdown();
+        }
+    }
+
+    private void overallTest(String testName) throws ParseException {
+        logger.info("{} performing {} test iterations", testName, REPETITIONS);
         for (int i = 0; i < REPETITIONS; i++) {
+            if(i % 100 == 0) {
+                logger.info("{}: execution {}", testName, i);
+            }
             testMultiPeriode();
             testMarevan14DagesSkema1_2Tablet();
             test1stkMorgen2Uge4UgersPause();
@@ -48,6 +79,7 @@ public class PerformanceTest {
     }
 
     private void testMultiPeriode() throws ParseException {
+        final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
         DosageProposalResult res = DosisTilTekstWrapper.getDosageProposalResult("{M+M+A+N}{PN}{N daglig}", "{1}{2}{1}",
                 "{1+2+3+4}{dag 1: 2 dag 2: 3}{2}", "tablet", "tabletter", "tages med rigeligt vand",
