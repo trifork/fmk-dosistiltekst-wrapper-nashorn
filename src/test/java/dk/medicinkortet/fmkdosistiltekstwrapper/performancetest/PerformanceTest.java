@@ -2,6 +2,7 @@ package dk.medicinkortet.fmkdosistiltekstwrapper.performancetest;
 
 import dk.medicinkortet.fmkdosistiltekstwrapper.DosageProposalResult;
 import dk.medicinkortet.fmkdosistiltekstwrapper.DosageType;
+import dk.medicinkortet.fmkdosistiltekstwrapper.DosisTilTekstWrapperTestBase;
 import dk.medicinkortet.fmkdosistiltekstwrapper.FMKVersion;
 import dk.medicinkortet.fmkdosistiltekstwrapper.nashorn.DosisTilTekstWrapper;
 import dk.medicinkortet.fmkdosistiltekstwrapper.vowrapper.*;
@@ -30,7 +31,7 @@ public class PerformanceTest {
 
     @Before
     public void setUp() {
-        DosisTilTekstWrapper.initializeAndUseNode("http://localhost:8000/");
+        DosisTilTekstWrapper.initializeAndUseNode(DosisTilTekstWrapperTestBase.NODE_SERVER_BASE_URL);
     }
 
     @Test
