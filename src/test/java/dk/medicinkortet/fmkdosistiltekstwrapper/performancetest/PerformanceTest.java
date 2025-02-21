@@ -8,6 +8,7 @@ import dk.medicinkortet.fmkdosistiltekstwrapper.nashorn.DosisTilTekstWrapper;
 import dk.medicinkortet.fmkdosistiltekstwrapper.vowrapper.*;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,15 +41,16 @@ public class PerformanceTest {
     }
 
     @Test
+    @Ignore("Takes a while to run and generates a huge amount of log output, but is valuable for local testing")
     public void parallelTestWithNode() throws InterruptedException {
         var tasks = new ArrayList<Callable<Void>>();
         for (int i=0; i<PARALLEL_TASKS; i++) {
             final int taskNum = i;
             tasks.add(() -> {
                 try {
-                logger.info("Task {} performing work", taskNum);
-                overallTest("Parallel test (task " + taskNum + ")");
-                logger.info("Task {} done", taskNum);
+                    logger.info("Task {} performing work", taskNum);
+                    overallTest("Parallel test (task " + taskNum + ")");
+                    logger.info("Task {} done", taskNum);
                 return null;
                 } catch (Exception e) {
                     logger.error("Task {} failed", taskNum, e);

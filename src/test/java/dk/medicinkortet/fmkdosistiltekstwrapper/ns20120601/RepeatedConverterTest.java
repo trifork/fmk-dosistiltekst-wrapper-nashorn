@@ -275,7 +275,8 @@ public class RepeatedConverterTest extends DosisTilTekstWrapperTestBase {
 		Assert.assertEquals(DosageType.Temporary, DosisTilTekstWrapper.getDosageType(dosage));
 	}
 	
-	@Test @Ignore("Hasn't been updated alongside the server implementation, and looks funky - revisit later")
+	@Test
+	@Ignore("Hasn't been updated alongside the server implementation, and looks funky - revisit later")
 	public void testNew() throws Exception {
 		DosageWrapper dosage = DosageWrapper.makeDosage(
 			StructuresWrapper.makeStructures(
