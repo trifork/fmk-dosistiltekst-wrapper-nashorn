@@ -19,7 +19,7 @@
         Don't manually edit revision - the build pipeline will strip "SNAPSHOT" when performing a release,
         and bump to the next SNAPSHOT version.
         -->
-        <revision>1.1.8-SNAPSHOT</revision>
+        <revision>1.1.9-SNAPSHOT</revision>
     </properties>
 
     <dependencies>
