@@ -9,48 +9,60 @@
     <version>${revision}</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <revision>1.1.8
-        </revision>  <!-- No snapshot here - will be added by Jenkins - bump version manually after release-->
+        <jackson-version>2.18.2</jackson-version>
+        <slf4j-version>2.0.16</slf4j-version>
+
+        <!--
+        Don't manually edit revision - the build pipeline will strip "SNAPSHOT" when performing a release,
+        and bump to the next SNAPSHOT version.
+        -->
+        <revision>1.1.8-SNAPSHOT</revision>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.13.4</version>
+            <version>${jackson-version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.4.1</version>
+            <version>${jackson-version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.13.4</version>
+            <version>${jackson-version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
-            <version>2.13.4</version>
+            <version>${jackson-version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.13.4</version>
+            <version>${jackson-version}</version>
         </dependency>
 
         <dependency>
             <groupId>trifork</groupId>
             <artifactId>fmk-dosistiltekst-wrapper</artifactId>
             <version>1.1.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-version}</version>
         </dependency>
 
         <dependency>
@@ -61,11 +73,11 @@
         </dependency>
 
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j-version}</version>
+            <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <repositories>
@@ -94,32 +106,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.12.1</version>
-                <executions>
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <configuration>
-                            <nodeVersion>v16.17.0</nodeVersion>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.4</version>
+                <version>0.8.12</version>
                 <configuration>
                     <includes>
                         <include>dk/medicinkortet/fmkdosistiltekstwrapper/**/*</include>
@@ -146,7 +135,13 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
                 <configuration>
                     <argLine>${surefire.jacoco.args}</argLine>
                 </configuration>
@@ -166,5 +161,4 @@
             <url>https://ci.fmk.netic.dk/nexus/repository/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
 </project>

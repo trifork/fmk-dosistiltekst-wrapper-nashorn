@@ -33,16 +33,6 @@ import org.junit.Test;
 import java.math.BigDecimal;
 
 public class MultiplePeriodesTest extends DosisTilTekstWrapperTestBase {
-	/*
-	@Test
-	public void testWithNode() {
-		  
-		        ClientConfig config = new DefaultClientConfig();
-		        Client client = Client.create(config);
-		        WebResource service = client.resource("http://localhost:8080");
-	            service.path("test");
-		        
-	}*/
 	@Test
 	public void testTwoFollwingPeriodes() throws Exception {
 		
